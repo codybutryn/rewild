@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-19T12:00:00Z",
+  "title": "Design System: ReWild — The Field List",
+  "extensions": {
+    "colorMeta": {
+      "stock": {
+        "role": "neutral",
+        "displayName": "Waterproof Grid Stock",
+        "canonical": "#E7EBE3",
+        "tonalRamp": ["#20241F", "#333A31", "#4A5347", "#66705F", "#8A9484", "#AEB8A9", "#CDD5C8", "#EFF2EC"]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "The Sheet",
+        "canonical": "#F7F8F5",
+        "tonalRamp": ["#232420", "#3A3B36", "#53554E", "#6F7169", "#949688", "#B9BBAE", "#D9DBD1", "#F7F8F5"]
+      },
+      "shade": {
+        "role": "neutral",
+        "displayName": "Shaded Region",
+        "canonical": "#DDE3D8",
+        "tonalRamp": ["#1E221C", "#31372E", "#485043", "#636C5C", "#879180", "#ABB5A4", "#C9D2C3", "#E9EEE6"]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#1F2420",
+        "tonalRamp": ["#0C0F0C", "#141814", "#1F2420", "#333A34", "#4A544C", "#6D7A6E", "#9AA79B", "#CBD3CB"]
+      },
+      "graphite-2": {
+        "role": "neutral",
+        "displayName": "Secondary Pencil",
+        "canonical": "#4A544C",
+        "tonalRamp": ["#0C0F0C", "#141814", "#1F2420", "#333A34", "#4A544C", "#6D7A6E", "#9AA79B", "#CBD3CB"]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Printed Rule",
+        "canonical": "#B9C4B4",
+        "tonalRamp": ["#12170F", "#20281C", "#313C2A", "#455239", "#5F6E50", "#7E8F73", "#A3B199", "#C8D2C0"]
+      },
+      "rule-firm": {
+        "role": "neutral",
+        "displayName": "Heavy Rule",
+        "canonical": "#7E8F73",
+        "tonalRamp": ["#12170F", "#20281C", "#313C2A", "#455239", "#5F6E50", "#7E8F73", "#A3B199", "#C8D2C0"]
+      },
+      "hivis": {
+        "role": "primary",
+        "displayName": "High-Visibility Cover Yellow",
+        "canonical": "#F2C300",
+        "tonalRamp": ["#241C00", "#3D3000", "#584600", "#7A6000", "#A38000", "#C79E00", "#F2C300", "#FFE480"]
+      },
+      "hivis-deep": {
+        "role": "primary",
+        "displayName": "Hi-Vis Pressed",
+        "canonical": "#C79E00",
+        "tonalRamp": ["#241C00", "#3D3000", "#584600", "#7A6000", "#A38000", "#C79E00", "#F2C300", "#FFE480"]
+      },
+      "survey": {
+        "role": "secondary",
+        "displayName": "Surveyor Flagging Orange",
+        "canonical": "#E2571E",
+        "tonalRamp": ["#2B0F03", "#4A1B06", "#6B270A", "#8E340E", "#B03B0F", "#E2571E", "#F0855A", "#F8BFA5"]
+      },
+      "survey-ink": {
+        "role": "secondary",
+        "displayName": "Surveyor Ink",
+        "canonical": "#B03B0F",
+        "tonalRamp": ["#2B0F03", "#4A1B06", "#6B270A", "#8E340E", "#B03B0F", "#E2571E", "#F0855A", "#F8BFA5"]
+      },
+      "stamp": {
+        "role": "tertiary",
+        "displayName": "Locality Stamp Violet",
+        "canonical": "#5B3A8C",
+        "tonalRamp": ["#150C22", "#241537", "#33204E", "#452B69", "#5B3A8C", "#7A55B0", "#A183CC", "#CDBBE4"]
+      },
+      "survey-deep": {
+        "role": "secondary",
+        "displayName": "Surveyor Flag Pressed",
+        "canonical": "#C44A14",
+        "tonalRamp": ["#2B0F03", "#4A1B06", "#6B270A", "#8E340E", "#B03B0F", "#C44A14", "#E2571E", "#F0855A"],
+        "purpose": "The pressed state of the primary action button only. Shares the surveyor ramp; it is the flag under pressure, not a third orange."
+      },
+      "stamp-wash": {
+        "role": "neutral",
+        "displayName": "Stamp Wash",
+        "canonical": "rgba(255,255,255,0.42)",
+        "translucent": true,
+        "tonalRamp": ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.15)", "rgba(255,255,255,0.24)", "rgba(255,255,255,0.33)", "rgba(255,255,255,0.42)", "rgba(255,255,255,0.58)", "rgba(255,255,255,0.75)", "rgba(255,255,255,0.92)"],
+        "purpose": "The translucent white the locality stamp sits on — paper showing through rubber. Only ever over hi-vis; the ramp is alpha, not lightness, because the ground must read through it."
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The landing headline only, capped at 16ch. The only place Archivo 800 gets real size." },
+      "headline": { "displayName": "Headline", "purpose": "The heading at the top of every in-app view; clamps at 2.1rem." },
+      "title": { "displayName": "Title", "purpose": "Section heads, uppercase, underlined by a 2px graphite rule." },
+      "body": { "displayName": "Body", "purpose": "Running copy; ledes cap at 66ch in secondary pencil." },
+      "label": { "displayName": "Label", "purpose": "Mono uppercase captions: tabs, buttons, field captions, panel headers, chips." },
+      "figure": { "displayName": "Figure", "purpose": "Mono tabular running totals: tally band, habitat score, rebate amount." }
+    },
+    "icons": {
+      "library": "Tabler Icons (webfont)",
+      "version": "3.19.0",
+      "href": "https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css",
+      "weight": "single outline weight, 2px stroke",
+      "sizes": ["15px inside the tick box", "17px in option toggles", "34px in the empty state"],
+      "permittedInks": ["{colors.graphite}", "{colors.hivis}", "{colors.survey}", "{colors.stamp}"],
+      "notes": [
+        "Icons take world ink only and never a per-item colour. This is the rule that removed ~15 inherited Material-palette hexes; the last survivor, a dead color:'#888' fallback in the wildlife lookup, is gone — the fallback record is now {label, icon:'ti-circle'}.",
+        "The CDN URL requires its /dist/ path segment. Without it the stylesheet 404s and every icon silently disappears — the exact bug the superseded build shipped with.",
+        "Icons label controls. Species imagery is always the drawn plate set, never an icon.",
+        "Measured in the shipped source: 23 distinct ti-* classes — 9 written directly into markup, 15 supplied by data records for wildlife groups, goals, sun options and marketplace entries, with ti-butterfly appearing in both sets. Agrees with DESIGN.md.",
+        "Panel snippets below inline the same glyphs as SVG at the same stroke weight, because the sidecar renders into a shadow DOM with no webfont loaded."
+      ]
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "The only easing curve in the build. Used for every transition." },
+      { "name": "micro-press", "value": "110ms", "purpose": "Scale press feedback on buttons, tabs and the tick box (0.97, tick 0.92)." },
+      { "name": "micro-state", "value": "120-140ms", "purpose": "Colour changes on rows, chips, options, month cells and the tick fill." },
+      { "name": "rerank-flip", "value": "420ms", "purpose": "The one authored moment: FLIP translate on plant rows when a goal changes. Double-guarded by CSS prefers-reduced-motion and a JS matchMedia early return." },
+      { "name": "grid-pitch", "value": "22px", "purpose": "Not motion, but the spatial rhythm every measure answers to." }
+    ],
+    "breakpoints": [
+      { "name": "row-collapse", "value": "640px" },
+      { "name": "tally-collapse", "value": "720px" },
+      { "name": "split-collapse", "value": "900px" },
+      { "name": "container", "value": "1080px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button (Go)",
+      "kind": "button",
+      "refersTo": "button-go",
+      "description": "The one action per view — the row you add. Surveyor orange fill, graphite box, mono uppercase, icon in world ink (currentColor).",
+      "html": "<button class=\"ds-btn ds-btn-go\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5l10 -10\"/></svg>Add to my yard</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1rem;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:transform 110ms cubic-bezier(0.23,1,0.32,1),background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-btn .ds-i{width:1em;height:1em;flex:none} .ds-btn-go{background:#E2571E;color:#fff} .ds-btn-go:hover{background:var(--survey-deep,#C44A14)} .ds-btn-go:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-btn-go:active{transform:scale(0.97)}"
+    },
+    {
+      "name": "State Button (Hi-Vis)",
+      "kind": "button",
+      "refersTo": "button-hi",
+      "description": "Records something. Hi-vis cover yellow means logged/active.",
+      "html": "<button class=\"ds-btn ds-btn-hi\">Log a sighting</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1rem;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:transform 110ms cubic-bezier(0.23,1,0.32,1),background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-btn-hi{background:#F2C300} .ds-btn-hi:hover{background:#C79E00} .ds-btn-hi:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-btn-hi:active{transform:scale(0.97)}"
+    },
+    {
+      "name": "Ruled Blank",
+      "kind": "input",
+      "refersTo": "input-blank",
+      "description": "A form field drawn as a printed blank: mono caption above, no box, a single 2.5px graphite underline.",
+      "html": "<label class=\"ds-field\"><span>Plot size you would convert (sq ft)</span><input placeholder=\"400\" inputmode=\"numeric\"></label>",
+      "css": ".ds-field{display:block} .ds-field > span{display:block;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#4A544C;margin-bottom:0.28rem} .ds-field input{width:100%;font-family:'Azeret Mono',ui-monospace,monospace;font-size:1rem;padding:0.5rem 0.6rem;background:#F7F8F5;border:0;border-bottom:2.5px solid #1F2420;color:#1F2420;border-radius:0} .ds-field input::placeholder{color:#9AA79B} .ds-field input:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
+    },
+    {
+      "name": "Index Tabs",
+      "kind": "nav",
+      "refersTo": "tab",
+      "description": "Notebook index tabs sitting 2px proud of the sheet edge; the current tab takes the sheet fill and merges with the page. Wraps rather than scrolls.",
+      "html": "<nav class=\"ds-tabs\" aria-label=\"Sections\"><button class=\"ds-tab\" aria-current=\"page\">My yard</button><button class=\"ds-tab\">Plants</button><button class=\"ds-tab\">Rebates</button><button class=\"ds-tab\">Wildlife log</button></nav>",
+      "css": ".ds-tabs{display:flex;flex-wrap:wrap;gap:3px;padding-top:0.6rem;border-bottom:2px solid #1F2420;background:#E7EBE3} .ds-tab{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 0.85rem;background:#DDE3D8;color:#1F2420;border:2px solid #1F2420;border-bottom:0;border-radius:0;white-space:nowrap;flex:none;position:relative;top:2px;cursor:pointer;transition:background-color 140ms cubic-bezier(0.23,1,0.32,1),transform 110ms cubic-bezier(0.23,1,0.32,1)} .ds-tab:hover{background:#F7F8F5} .ds-tab:active{transform:scale(0.97)} .ds-tab:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-tab[aria-current=\"page\"]{background:#F7F8F5;padding-bottom:0.66rem}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Mono tag in three states: neutral, logged (hi-vis), and out-of-band warning (surveyor ink).",
+      "html": "<span class=\"ds-chip\">Perennial</span> <span class=\"ds-chip ds-chip-on\">Logged</span> <span class=\"ds-chip ds-chip-warn\">outside your band</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:0.3rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid #7E8F73;color:#4A544C;background:transparent;border-radius:0;white-space:nowrap} .ds-chip-on{background:#F2C300;border-color:#1F2420;color:#1F2420;font-weight:700} .ds-chip-warn{border-color:#B03B0F;color:#B03B0F}"
+    },
+    {
+      "name": "Tally Band",
+      "kind": "custom",
+      "refersTo": "tally",
+      "description": "Four running figures across the top of every view, one cell lit in surveyor orange. Mono tabular figures over small uppercase captions.",
+      "html": "<div class=\"ds-tallies\"><div class=\"ds-tally\"><b>14</b><small>Species logged</small></div><div class=\"ds-tally\"><b>31</b><small>Sightings</small></div><div class=\"ds-tally ds-lit\"><b>48</b><small>Habitat score</small></div><div class=\"ds-tally\"><b>$1,200</b><small>Est. rebate</small></div></div>",
+      "css": ".ds-tallies{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #1F2420;background:#F7F8F5;color:#1F2420} .ds-tally{padding:0.85rem 0.9rem;border-right:1px solid #B9C4B4} .ds-tally:last-child{border-right:0} .ds-tally b{display:block;font-family:'Azeret Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);line-height:1;letter-spacing:-0.03em} .ds-tally small{display:block;font-family:'Archivo',system-ui,sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4A544C;margin-top:0.34rem} .ds-lit b{color:#E2571E} @media (max-width:720px){.ds-tallies{grid-template-columns:1fr 1fr}.ds-tally:nth-child(-n+2){border-bottom:1px solid #B9C4B4}.ds-tally:nth-child(2n){border-right:0}}"
+    },
+    {
+      "name": "Coded Row with Plate",
+      "kind": "card",
+      "refersTo": "row",
+      "description": "The unit of the product: mono record code in stamp violet, a drawn growth-form plate, common and scientific name, and a tick box whose check fades in when logged.",
+      "html": "<div class=\"ds-list\"><div class=\"ds-row\"><span class=\"ds-code\">ASTU</span><span class=\"ds-plate\"><svg viewBox=\"0 0 58 44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M29 40 V17\"/><circle cx=\"29\" cy=\"12\" r=\"5\"/><path d=\"M29 26 C24 26 21 23 21 19 M29 30 C34 30 37 27 37 23\"/></svg></span><div><div class=\"ds-nm\">Sky Blue Aster</div><div class=\"ds-sci\">Symphyotrichum oolentangiense</div></div><div class=\"ds-act\"><button class=\"ds-tick\" aria-pressed=\"true\" aria-label=\"Logged\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5l10 -10\"/></svg></button></div></div></div>",
+      "css": ".ds-list{border-top:1px solid #B9C4B4;background:#F7F8F5;color:#1F2420} .ds-row{display:grid;grid-template-columns:70px 58px 1fr auto;gap:0.9rem;align-items:center;padding:0.62rem 0.4rem;border-bottom:1px solid #B9C4B4;transition:background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-row:hover{background:#DDE3D8} .ds-code{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;color:#5B3A8C;letter-spacing:0.04em} .ds-nm{font-family:'Archivo',system-ui,sans-serif;font-weight:600} .ds-sci{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;color:#4A544C;font-style:italic} .ds-plate{width:58px;height:44px;flex:none;display:block;border:1.5px solid #1F2420;background:#DDE3D8;color:#1F2420} .ds-plate svg{width:100%;height:100%;display:block} .ds-act{display:flex;gap:0.4rem;align-items:center} .ds-tick{width:23px;height:23px;display:grid;place-items:center;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:background-color 120ms cubic-bezier(0.23,1,0.32,1),transform 110ms cubic-bezier(0.23,1,0.32,1)} .ds-tick .ds-i{width:0.72rem;height:0.72rem;opacity:0;transition:opacity 120ms cubic-bezier(0.23,1,0.32,1)} .ds-tick[aria-pressed=\"true\"]{background:#F2C300} .ds-tick[aria-pressed=\"true\"] .ds-i{opacity:1} .ds-tick:active{transform:scale(0.92)} .ds-tick:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
+    },
+    {
+      "name": "Locality Band",
+      "kind": "nav",
+      "refersTo": "locality-band",
+      "description": "The hi-vis cover strip. Brand lockup left, rotated violet locality stamp right — the one control whose value propagates through the record. The pin takes stamp ink via currentColor.",
+      "html": "<div class=\"ds-locality\"><div class=\"ds-loc-in\"><div class=\"ds-brand\">ReWild <span>Field List</span></div><div class=\"ds-stamp\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"/><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z\"/></svg>Milwaukee, WI · 53202 · COOL <button>change</button></div></div></div>",
+      "css": ".ds-locality{background:#F2C300;border-bottom:3px solid #1F2420;color:#1F2420} .ds-loc-in{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.75rem 1rem;max-width:1080px;margin:0 auto} .ds-brand{display:flex;align-items:baseline;gap:0.5rem;font-family:'Archivo',system-ui,sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:-0.02em} .ds-brand span{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75} .ds-stamp{margin-left:auto;display:flex;align-items:center;gap:0.5rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5B3A8C;border:2.5px solid #5B3A8C;padding:0.3rem 0.62rem;background:var(--stamp-wash,rgba(255,255,255,0.42));transform:rotate(-1.2deg)} .ds-stamp .ds-i{width:0.72rem;height:0.72rem;flex:none} .ds-stamp button{color:inherit;font:inherit;border:0;background:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px} .ds-stamp button:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
+    },
+    {
+      "name": "Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "A boxed section of the sheet with an inverted graphite header bar. No shadow, no radius.",
+      "html": "<div class=\"ds-panel\"><header>Rebate estimate</header><div class=\"ds-panel-body\"><div class=\"ds-amt\">$1,200</div><p class=\"ds-prog\">400 sq ft at $3.00/sq ft</p><p class=\"ds-unverified\">ReWild&rsquo;s estimate from your plot size, not an offer. Amounts and eligibility change — verify on the program site.</p></div></div>",
+      "css": ".ds-panel{border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0} .ds-panel > header{background:#1F2420;color:#F7F8F5;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 0.7rem} .ds-panel-body{padding:0.8rem 0.85rem;font-family:'Archivo',system-ui,sans-serif} .ds-amt{font-family:'Azeret Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);letter-spacing:-0.03em;line-height:1} .ds-prog{font-weight:700;margin:0.2rem 0 0} .ds-unverified{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;color:#B03B0F;border-top:1px dashed #B03B0F;margin:0.55rem 0 0;padding-top:0.4rem}"
+    },
+    {
+      "name": "Option Toggle",
+      "kind": "chip",
+      "refersTo": "option",
+      "description": "A multi-select goal or exposure toggle. Heavy-rule box at rest; graphite box on hi-vis when pressed. Icon at 17px in world ink.",
+      "html": "<div class=\"ds-opts\"><button class=\"ds-opt\" aria-pressed=\"true\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 6v14\"/><path d=\"M12 8l-3.5 -3.5a3.5 3.5 0 0 0 -5 5l4.5 4.5\"/><path d=\"M12 8l3.5 -3.5a3.5 3.5 0 0 1 5 5l-4.5 4.5\"/><path d=\"M8 14a4 4 0 0 0 4 6a4 4 0 0 0 4 -6\"/></svg>Pollinators</button><button class=\"ds-opt\" aria-pressed=\"false\">Birds</button><button class=\"ds-opt\" aria-pressed=\"false\">Low water</button></div>",
+      "css": ".ds-opts{display:flex;gap:0.5rem;flex-wrap:wrap} .ds-opt{display:flex;align-items:center;gap:0.45rem;font-family:'Archivo',system-ui,sans-serif;font-size:1rem;border:2px solid #7E8F73;background:transparent;color:#1F2420;padding:0.45rem 0.7rem;border-radius:0;cursor:pointer;transition:background-color 130ms cubic-bezier(0.23,1,0.32,1),border-color 130ms cubic-bezier(0.23,1,0.32,1)} .ds-opt .ds-i{width:1em;height:1em;flex:none} .ds-opt:hover{background:#DDE3D8} .ds-opt:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-opt[aria-pressed=\"true\"]{border-color:#1F2420;background:#F2C300;font-weight:600}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Rite-in-the-Rain Notebook",
+    "overview": "ReWild is a field book, not an app that happens to be about plants. Every surface behaves like a page of waterproof ruled stock: a cool grey-green ground printed with a real 22px grid, graphite ink, heavy black rules that box the sheet, and a high-visibility cover yellow that marks anything logged, active or tallied. The yard is a running record — dated, coded, tallied rows — and the interface's job is to look like the place that record is kept.\n\nDensity is the point. Rows are short, rules are thin and constant, labels are set in mono and shouted small. Nothing floats: there are no shadows anywhere in the build, no rounded corners anywhere in the build, and no soft card surfaces. Depth comes from three tonal grounds (stock behind, sheet in front, shade for pressed and inert regions) separated by 1px printed rules and 2–2.5px graphite borders. Content that reads as a form is drawn as a form: ruled blanks with an underline instead of a box, tick boxes you press, index tabs that sit up over the sheet edge.\n\nThis world explicitly refuses the calm-plant-app arrangement — soft cards on a sage ground, generous whitespace, muted pastels, cream paper. The page ground is cool on purpose and is never to be warmed toward cream. Because the image workspace was unavailable, the build is fully code-led: species illustrations are authored SVG plates drawn by growth form, which is what a field guide does anyway.",
+    "keyCharacteristics": [
+      "Printed 22px grid on the page ground, always visible around the sheet",
+      "Zero radius, zero shadow, hard graphite rules at 1px / 2px / 2.5px",
+      "Hi-vis yellow means state (logged / active / tallied); surveyor orange means action",
+      "Azeret Mono is measurement only: codes, figures, tallies, dates, labels",
+      "Tonal stack of three grounds — stock, sheet, shade — instead of elevation",
+      "Exactly one authored motion moment in the whole build"
+    ],
+    "rules": [
+      { "name": "The Two-Orange Rule", "body": "Surveyor orange exists in two values and they are not interchangeable. The bright flag measures 3.51:1 on the sheet — legal for large figures and for white-on-orange fills, and used for nothing else. Any orange text below large size uses the darkened ink (5.66:1). Do not simplify these back into one token; the split is what keeps the flag bright and the caveats readable.", "section": "colors" },
+      { "name": "The Hi-Vis Is State Rule", "body": "Yellow is never applied for emphasis, mood or branding inside the sheet. If a surface is hi-vis, something is logged, active, selected or tallied. If nothing is true of it, it is sheet or shade.", "section": "colors" },
+      { "name": "The Cool Stock Rule", "body": "The page ground is cool grey-green. Warming it toward cream breaks the waterproof-stock premise and is not a fix.", "section": "colors" },
+      { "name": "The Mono-Is-Measurement Rule", "body": "Azeret Mono is reserved for things that were measured or recorded: record codes, figures, tallies, dates, units, and the small-caps labels that name them. Never a sentence of running prose, never atmosphere.", "section": "typography" },
+      { "name": "The Tabular Figures Rule", "body": "Every number that can change while the user watches is set with tabular figures, so a tally never reflows its own digits.", "section": "typography" },
+      { "name": "The 22px Pitch Rule", "body": "The grid pitch is the rhythm. Vertical spacing should land near multiples of it rather than on an invented 4/8 scale, and nothing should tile over the ground so completely that the ruling disappears.", "section": "layout" },
+      { "name": "The No-Lift Rule", "body": "Nothing in this system lifts. If a surface needs to read as nearer, change its ground (shade → sheet), change its border weight, or invert it. Never add a shadow, and never a hard offset shadow, which belongs to a neobrutalist world this one is not.", "section": "elevation" },
+      { "name": "The Drawn Plate Rule", "body": "Species imagery is authored SVG, not photography. Four line plates — Grass, Forb/herb, Shrub, Cactus — are drawn by growth form at 58×44 in currentColor on the shade ground, keyed off the record's category with Forb/herb as fallback. This is not a placeholder: a field guide draws its plates. It became the answer after all 17 inherited image URLs were found dead (every one 400s at Wikimedia), and it is the world's own solution, so future imagery extends the plate set rather than reverting to photos.", "section": "shapes" },
+      { "name": "The Icon Rule", "body": "Icons are the Tabler webfont at its single outline weight, loaded from CDN: 23 distinct glyphs across the app, 9 written directly into markup and the rest supplied by data records for wildlife groups, goals, sun options and marketplace entries. They appear in tick boxes, option toggles, buttons, the locality stamp, empty states and the wildlife log. They are permitted because Tabler is a real drawn library at one consistent stroke, which is what the craft floor asks for — the refusal is Unicode glyphs and emoji standing in for an icon system, not a drawn icon set. Two constraints bind them here: icons take world ink only (`--graphite`, `--hivis`, `--survey`, `--stamp`) and never a per-item colour, which is the rule that removed ~15 inherited Material-palette hexes; and the CDN URL needs its `/dist/` path segment, without which the stylesheet 404s and every icon silently vanishes — the exact bug the superseded build shipped with. Icons label controls; species imagery is the plate set above, never an icon.", "section": "shapes" },
+      { "name": "The One Moment Rule", "body": "This build spends its entire motion budget on the list re-rank: a FLIP over the plant list when a goal changes, so rows visibly travel to their new rank instead of silently re-rendering (420ms on cubic-bezier(0.23, 1, 0.32, 1), transform only). It is guarded twice — a CSS prefers-reduced-motion: no-preference wrapper on the moving class, and a matchMedia early return in JS that skips the measurement entirely. Everything else in the system is 110–140ms colour and scale micro-state. A second authored moment is not free: adding one means removing this one.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep the printed 22px grid on the page ground — two crossed linear-gradients in the rule colour at the grid pitch. It is the signature of the whole world.",
+      "Do split orange by size: the bright flag for fills and large figures, the darkened ink for any small text.",
+      "Do reserve hi-vis yellow for logged / active / tallied state.",
+      "Do set every code, figure, tally, date and label in Azeret Mono with tabular figures, and everything else in Archivo.",
+      "Do build depth from the three grounds and border weight (1px / 2px / 2.5px).",
+      "Do draw new species imagery as SVG plates by growth form, extending the existing plate set.",
+      "Do print truth as content, not as decoration: every rebate figure carries its own unverified line as body copy under a dashed surveyor-ink rule, a species outside the yard's climate band is flagged on its own row with a warn chip, and the marketplace states in its lede that it takes no commission. These are visual rules here, not copy to tidy away.",
+      "Do guard any motion twice — CSS prefers-reduced-motion and a JS matchMedia return."
+    ],
+    "donts": [
+      "Don't add a box-shadow. There are none in this system, and a hard offset shadow in particular belongs to a neobrutalist world this one is not.",
+      "Don't add a corner radius. Zero, everywhere.",
+      "Don't warm the ground toward cream. The stock is cool by design.",
+      "Don't flatten the two oranges into one token, and don't set small text in the bright flag (3.51:1 — it fails AA below large sizes).",
+      "Don't replace the printed grid with a flat fill or tile a full-bleed surface over it.",
+      "Don't introduce a kicker or eyebrow line above a heading. The mono sub-label exists once, inside the brand lockup, and is not a pattern to repeat.",
+      "Don't use Azeret Mono for running prose or for atmosphere.",
+      "Don't add a second authored motion moment while the list re-rank stands.",
+      "Don't animate the tick box beyond its existing 110–120ms press; it is hit constantly.",
+      "Don't substitute photography for the drawn plates."
+    ]
+  }
+}

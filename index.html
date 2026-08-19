@@ -28,6 +28,8 @@
   --survey:#E2571E;       /* surveyor flagging — fills and large figures */
   --survey-ink:#B03B0F;   /* the same flag, darkened for small text (AA on both grounds) */
   --stamp:#5B3A8C;        /* locality stamp ink */
+  --survey-deep:#C44A14;  /* surveyor flag, pressed */
+  --stamp-wash:rgba(255,255,255,0.42); /* the paper showing through a rubber stamp */
   --field:'Archivo',system-ui,sans-serif;
   --code:'Azeret Mono',ui-monospace,monospace;
   --ease:cubic-bezier(0.23,1,0.32,1);
@@ -61,13 +63,13 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 /* ── LOCALITY BLOCK: the one control that propagates ── */
 .locality{background:var(--hivis);border-bottom:3px solid var(--graphite)}
 .loc-in{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.75rem 0}
-.brand{display:flex;align-items:baseline;gap:0.5rem;font-weight:800;font-size:1.22rem;letter-spacing:-0.02em}
-.brand span{font-family:var(--code);font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75}
+.brand{display:flex;align-items:baseline;gap:0.5rem;font-weight:800;font-size:1.02rem;letter-spacing:-0.02em}
+.brand span{font-family:var(--code);font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75}
 .loc-stamp{
   margin-left:auto;display:flex;align-items:center;gap:0.5rem;
-  font-family:var(--code);font-size:0.76rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  font-family:var(--code);font-size:0.72rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
   color:var(--stamp);border:2.5px solid var(--stamp);padding:0.3rem 0.62rem;
-  background:rgba(255,255,255,0.42);transform:rotate(-1.2deg);
+  background:var(--stamp-wash);transform:rotate(-1.2deg);
 }
 .loc-stamp button{color:inherit;font:inherit;text-decoration:underline;text-underline-offset:2px}
 @media (max-width:640px){.loc-stamp{margin-left:0;width:100%;justify-content:center}}
@@ -77,14 +79,14 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .tally{padding:0.85rem 0.9rem;border-right:1px solid var(--rule)}
 .tally:last-child{border-right:0}
 .tally b{display:block;font-family:var(--code);font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);line-height:1;letter-spacing:-0.03em}
-.tally small{display:block;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-top:0.34rem}
+.tally small{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-top:0.34rem}
 .tally.lit b{color:var(--survey)}
 @media (max-width:720px){.tallies{grid-template-columns:1fr 1fr}.tally:nth-child(-n+2){border-bottom:1px solid var(--rule)}.tally:nth-child(2n){border-right:0}}
 
 /* ── INDEX TABS ── */
 .tabs{display:flex;flex-wrap:wrap;gap:3px;padding-top:0.6rem;border-bottom:2px solid var(--graphite)}
 .tab{
-  font-family:var(--code);font-size:0.74rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  font-family:var(--code);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
   padding:0.5rem 0.85rem;background:var(--shade);border:2px solid var(--graphite);border-bottom:0;
   white-space:nowrap;flex:none;position:relative;top:2px;
   transition:background-color 140ms var(--ease),transform 110ms var(--ease);
@@ -98,7 +100,7 @@ main{background:var(--sheet);border-left:2px solid var(--graphite);border-right:
 .pad{padding:clamp(1rem,3vw,1.7rem)}
 h1{font-size:clamp(1.4rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1}
 h2{font-size:1.02rem;font-weight:800;letter-spacing:0.03em;text-transform:uppercase;padding-bottom:0.4rem;border-bottom:2px solid var(--graphite);margin-bottom:0.9rem;display:flex;align-items:baseline;gap:0.6rem;flex-wrap:wrap}
-h2 .note{font-family:var(--code);font-size:0.74rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--graphite-2);margin-left:auto}
+h2 .note{font-family:var(--code);font-size:0.72rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--graphite-2);margin-left:auto}
 h3{font-size:0.98rem;font-weight:700}
 .lede{max-width:66ch;color:var(--graphite-2);margin-top:0.5rem}
 
@@ -110,10 +112,10 @@ h3{font-size:0.98rem;font-weight:700}
   transition:background-color 140ms var(--ease);
 }
 @media (hover:hover) and (pointer:fine){.row:hover{background:var(--shade)}}
-.row .code{font-family:var(--code);font-size:0.76rem;font-weight:700;color:var(--stamp);letter-spacing:0.04em}
+.row .code{font-family:var(--code);font-size:0.72rem;font-weight:700;color:var(--stamp);letter-spacing:0.04em}
 .row .nm{font-weight:600}
-.row .sci{font-family:var(--code);font-size:0.74rem;color:var(--graphite-2);font-style:italic}
-.row .meta{font-family:var(--code);font-size:0.74rem;color:var(--graphite-2)}
+.row .sci{font-family:var(--code);font-size:0.72rem;color:var(--graphite-2);font-style:italic}
+.row .meta{font-family:var(--code);font-size:0.72rem;color:var(--graphite-2)}
 .row .act{display:flex;gap:0.4rem;align-items:center}
 @media (max-width:640px){.row{grid-template-columns:64px 1fr;gap:0.6rem}.row .act{grid-column:1/-1;justify-content:flex-start;padding-left:64px}}
 
@@ -124,17 +126,17 @@ h3{font-size:0.98rem;font-weight:700}
 }
 .tick:active{transform:scale(0.92)}
 .tick[aria-pressed="true"]{background:var(--hivis)}
-.tick i{font-size:15px;opacity:0;transition:opacity 120ms var(--ease)}
+.tick i{font-size:0.72rem;opacity:0;transition:opacity 120ms var(--ease)}
 .tick[aria-pressed="true"] i{opacity:1}
 
 /* ── CHIPS / TAGS ── */
-.chip{display:inline-flex;align-items:center;gap:0.3rem;font-family:var(--code);font-size:0.7rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid var(--rule-firm);color:var(--graphite-2);white-space:nowrap}
+.chip{display:inline-flex;align-items:center;gap:0.3rem;font-family:var(--code);font-size:0.72rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid var(--rule-firm);color:var(--graphite-2);white-space:nowrap}
 .chip.on{background:var(--hivis);border-color:var(--graphite);color:var(--graphite);font-weight:700}
 .chip.warn{border-color:var(--survey-ink);color:var(--survey-ink)}
 
 /* ── BUTTONS ── */
 .btn{
-  display:inline-flex;align-items:center;gap:0.45rem;font-family:var(--code);font-size:0.76rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:0.45rem;font-family:var(--code);font-size:0.72rem;font-weight:700;
   letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1rem;border:2.5px solid var(--graphite);
   background:var(--sheet);text-decoration:none;
   transition:transform 110ms var(--ease),background-color 140ms var(--ease);
@@ -142,11 +144,10 @@ h3{font-size:0.98rem;font-weight:700}
 .btn:active{transform:scale(0.97)}
 .btn-go{background:var(--survey);color:#fff;border-color:var(--graphite)}
 .btn-hi{background:var(--hivis)}
-.btn-sm{padding:0.34rem 0.6rem;font-size:0.7rem;border-width:2px}
+.btn-sm{padding:0.34rem 0.6rem;font-size:0.72rem;border-width:2px}
 @media (hover:hover) and (pointer:fine){
   .btn:hover{background:var(--shade)}
-  .btn-go:hover{background:#C8481408}
-  .btn-go:hover{background:#C44A14}
+  .btn-go:hover{background:var(--survey-deep)}
   .btn-hi:hover{background:var(--hivis-deep)}
 }
 
@@ -154,14 +155,14 @@ h3{font-size:0.98rem;font-weight:700}
 .field{display:block;margin-bottom:0.9rem}
 .field > span{display:block;font-family:var(--code);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:0.28rem}
 .field input,.field select{
-  width:100%;font-family:var(--code);font-size:0.92rem;padding:0.5rem 0.6rem;
+  width:100%;font-family:var(--code);font-size:1rem;padding:0.5rem 0.6rem;
   background:var(--sheet);border:0;border-bottom:2.5px solid var(--graphite);color:var(--graphite);
 }
 .field input::placeholder{color:#9AA79B}
 .opts{display:flex;gap:0.5rem;flex-wrap:wrap}
-.opt{display:flex;align-items:center;gap:0.45rem;border:2px solid var(--rule-firm);padding:0.45rem 0.7rem;font-size:0.86rem;transition:background-color 130ms var(--ease),border-color 130ms var(--ease)}
+.opt{display:flex;align-items:center;gap:0.45rem;border:2px solid var(--rule-firm);padding:0.45rem 0.7rem;font-size:1rem;transition:background-color 130ms var(--ease),border-color 130ms var(--ease)}
 .opt[aria-pressed="true"]{border-color:var(--graphite);background:var(--hivis);font-weight:600}
-.opt i{font-size:17px}
+.opt i{font-size:1rem}
 
 /* ── PANELS ── */
 .panel{border:2.5px solid var(--graphite);background:var(--sheet)}
@@ -180,14 +181,14 @@ h3{font-size:0.98rem;font-weight:700}
 
 /* rebate — states print themselves as content */
 .rebate{border:2px solid var(--graphite);background:var(--sheet);padding:0.75rem 0.8rem}
-.rebate .amt{font-family:var(--code);font-weight:700;font-size:1.5rem;letter-spacing:-0.03em;line-height:1}
+.rebate .amt{font-family:var(--code);font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);letter-spacing:-0.03em;line-height:1}
 .rebate .prog{font-weight:700;margin-top:0.2rem}
-.rebate .unverified{font-family:var(--code);font-size:0.7rem;color:var(--survey-ink);border-top:1px dashed var(--survey-ink);margin-top:0.55rem;padding-top:0.4rem}
+.rebate .unverified{font-family:var(--code);font-size:0.72rem;color:var(--survey-ink);border-top:1px dashed var(--survey-ink);margin-top:0.55rem;padding-top:0.4rem}
 
 /* wildlife log */
 .sight{display:flex;align-items:center;gap:0.7rem;padding:0.5rem 0.3rem;border-bottom:1px solid var(--rule)}
 .sight .dot{width:26px;height:26px;flex:none;display:grid;place-items:center;border:2px solid var(--graphite)}
-.score{font-family:var(--code);font-size:clamp(2rem,6vw,3.2rem);font-weight:700;letter-spacing:-0.04em;line-height:1}
+.score{font-family:var(--code);font-size:clamp(1.9rem,6vw,3.4rem);font-weight:700;letter-spacing:-0.04em;line-height:1}
 
 /* month strip */
 .months{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-bottom:0.5rem}
@@ -203,7 +204,7 @@ h3{font-size:0.98rem;font-weight:700}
 .demo-note{font-family:var(--code);font-size:0.72rem;color:var(--graphite-2);margin-top:1.6rem;border-top:1px solid var(--rule);padding-top:0.7rem;max-width:46ch}
 
 /* demo banner */
-.demo-bar{background:var(--stamp);color:#fff;font-family:var(--code);font-size:0.74rem;letter-spacing:0.05em;padding:0.42rem 0;text-align:center}
+.demo-bar{background:var(--stamp);color:#fff;font-family:var(--code);font-size:0.72rem;letter-spacing:0.05em;padding:0.42rem 0;text-align:center}
 .demo-bar button{text-decoration:underline;text-underline-offset:2px;font-weight:700}
 
 /* empty state */
@@ -431,11 +432,11 @@ function viewYard(){
   +     '<div class="panel"><header>Est. rebate</header><div class="body">'
   +       (rebateValue() ? '<div class="rebate" style="border:0;padding:0"><div class="amt">'+money(Math.round(rebateValue()))+'</div>'
           + '<p class="unverified">ReWild&rsquo;s estimate from your plot size, not an offer. Amounts and eligibility change — verify on the program site.</p></div>'
-          : '<p style="font-size:0.88rem;color:var(--graphite-2)">Set your state, ZIP and plot size to see what is available.</p>')
+          : '<p style="font-size:1rem;color:var(--graphite-2)">Set your state, ZIP and plot size to see what is available.</p>')
   +     '</div></div>'
   +     '<div class="panel" style="margin-top:0.9rem"><header>Habitat score</header><div class="body">'
   +       '<div class="score mono">'+habitatScore()+'</div>'
-  +       '<p style="font-size:0.84rem;color:var(--graphite-2);margin-top:0.3rem">Weighted by what you logged. Bees and butterflies count most.</p>'
+  +       '<p style="font-size:1rem;color:var(--graphite-2);margin-top:0.3rem">Weighted by what you logged. Bees and butterflies count most.</p>'
   +     '</div></div>'
   +   '</aside>'
   + '</div></div>';
@@ -469,7 +470,7 @@ function viewSetup(){
   +   '<label class="field"><span>City</span><input name="city" value="'+esc(y.city||'')+'" placeholder="Milwaukee"></label>'
   +   '<label class="field"><span>ZIP</span><input name="zip" value="'+esc(y.zip||'')+'" placeholder="53202" inputmode="numeric"></label>'
   +   '<label class="field"><span>Plot size you would convert (sq ft)</span><input name="sqft" value="'+esc(y.sqft||'')+'" placeholder="400" inputmode="numeric"></label>'
-  +   '<div class="field"><span>Sun exposure <em style="font-family:var(--code);font-size:0.68rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--survey-ink)">recorded, not yet used for matching</em></span><div class="opts" id="sunopts">'
+  +   '<div class="field"><span>Sun exposure <em style="font-family:var(--code);font-size:0.72rem;font-weight:400;text-transform:none;letter-spacing:0;color:var(--survey-ink)">recorded, not yet used for matching</em></span><div class="opts" id="sunopts">'
   +     DATA.sun.map(s=>'<button type="button" class="opt" data-act="sun" data-v="'+s.value+'" aria-pressed="'+(y.sun===s.value)+'"><i class="ti '+s.icon+'" aria-hidden="true"></i>'+esc(s.label)+'</button>').join('')
   +   '</div></div>'
   +   '<div class="field"><span>What is this for?</span><div class="opts" id="goalopts">'
@@ -520,8 +521,8 @@ function viewRebates(){
         return '<div class="rebate" data-key="'+esc(r.program)+'">'
         + '<div class="amt">'+(est?money(Math.round(est)):'$'+r.amount_per_sqft+'/sq ft')+'</div>'
         + '<div class="prog">'+esc(r.program)+'</div>'
-        + '<div class="meta mono" style="font-size:0.74rem;color:var(--graphite-2);margin-top:0.2rem">'+esc(r.city)+', '+esc(r.state)+' · '+esc(r.category)+'</div>'
-        + '<p style="font-size:0.86rem;margin-top:0.5rem">'+esc(r.description)+'</p>'
+        + '<div class="meta mono" style="font-size:0.72rem;color:var(--graphite-2);margin-top:0.2rem">'+esc(r.city)+', '+esc(r.state)+' · '+esc(r.category)+'</div>'
+        + '<p style="font-size:1rem;margin-top:0.5rem">'+esc(r.description)+'</p>'
         + '<div style="margin-top:0.55rem;display:flex;gap:0.35rem;flex-wrap:wrap">'
         +   '<span class="chip">min '+r.min_sqft+' sq ft</span><span class="chip">cap '+money(r.max_amount)+'</span>'
         +   (r.exact?'<span class="chip on">matches your ZIP</span>':'')
@@ -542,15 +543,15 @@ function viewWildlife(){
   + '<div class="opts">'+DATA.wildlife.map(w=>'<button class="opt" data-act="log" data-kind="'+w.value+'"><i class="ti '+w.icon+'" aria-hidden="true"></i>'+esc(w.label)+'</button>').join('')+'</div>'
   + '<h2 style="margin-top:1.5rem">Recorded <span class="note">'+S.sightings.length+' entries</span></h2>'
   + (S.sightings.length ? '<div class="list">'+S.sightings.slice(0,40).map(s=>{
-      const w = DATA.wildlife.find(x=>x.value===s.kind)||{label:s.kind,icon:'ti-circle',color:'#888'};
+      const w = DATA.wildlife.find(x=>x.value===s.kind)||{label:s.kind,icon:'ti-circle'};
       return '<div class="sight" data-key="s-'+s.id+'"><span class="dot"><i class="ti '+w.icon+'" aria-hidden="true"></i></span>'
-      + '<div style="flex:1"><b>'+esc(w.label)+'</b><div class="mono" style="font-size:0.74rem;color:var(--graphite-2)">'+esc(new Date(s.date).toLocaleDateString())+'</div></div>'
+      + '<div style="flex:1"><b>'+esc(w.label)+'</b><div class="mono" style="font-size:0.72rem;color:var(--graphite-2)">'+esc(new Date(s.date).toLocaleDateString())+'</div></div>'
       + '<button class="btn btn-sm" data-act="unlog" data-id="'+s.id+'">Remove</button></div>';
     }).join('')+'</div>'
     : '<div class="empty"><i class="ti ti-butterfly" aria-hidden="true"></i><p>Nothing logged yet. Tap a species above the moment you see one.</p></div>')
   + '</section><aside><div class="panel"><header>Habitat score</header><div class="body">'
   + '<div class="score mono">'+habitatScore()+'</div>'
-  + '<p style="font-size:0.84rem;color:var(--graphite-2);margin-top:0.4rem">Bees and butterflies weigh 3, birds, mammals and amphibians 2, beetles 1.5, spiders 1.</p>'
+  + '<p style="font-size:1rem;color:var(--graphite-2);margin-top:0.4rem">Bees and butterflies weigh 3, birds, mammals and amphibians 2, beetles 1.5, spiders 1.</p>'
   + '</div></div></aside></div></div>';
 }
 
