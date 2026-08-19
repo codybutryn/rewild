@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReWild — the field list for your yard</title>
+<meta name="description" content="Native plants matched to your location and light, cash rebates for replacing lawn, and a wildlife log that proves it worked. Keep your yard as a field list.">
+<meta name="theme-color" content="#F2C300">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="%23F2C300"/><path d="M4 8h24M4 14h24M4 20h24M4 26h24" stroke="%237E8F73" stroke-width="1.2"/><path d="M16 26V11m0 0c0-4 3-6 6-6 0 4-2 6-6 6zm0 3c0-4-3-6-6-6 0 4 2 6 6 6z" stroke="%231F2420" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg>'>
+<script>document.documentElement.className="js"</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Azeret+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── The Field List: a waterproof notebook, not stationery ── */
+  --stock:#E7EBE3;        /* waterproof grid stock — cool, never cream */
+  --sheet:#F7F8F5;        /* the whiter page you write on */
+  --shade:#DDE3D8;        /* shaded region on the blank */
+  --graphite:#1F2420;     /* pencil ink */
+  --graphite-2:#4A544C;   /* secondary pencil, AA on stock */
+  --rule:#B9C4B4;         /* printed grid rule */
+  --rule-firm:#7E8F73;    /* heavier rule */
+  --hivis:#F2C300;        /* high-visibility cover — logged, active, tallied */
+  --hivis-deep:#C79E00;   /* hi-vis pressed */
+  --survey:#E2571E;       /* surveyor flagging — fills and large figures */
+  --survey-ink:#B03B0F;   /* the same flag, darkened for small text (AA on both grounds) */
+  --stamp:#5B3A8C;        /* locality stamp ink */
+  --field:'Archivo',system-ui,sans-serif;
+  --code:'Azeret Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+  --grid:22px;            /* the notebook's ruling pitch */
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  background:var(--stock);
+  /* the printed grid — the signature of the whole world */
+  background-image:
+    linear-gradient(var(--rule) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:var(--grid) var(--grid);
+  color:var(--graphite);font-family:var(--field);line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
+}
+::selection{background:var(--hivis);color:var(--graphite)}
+:focus-visible{outline:2.5px solid var(--stamp);outline-offset:2px}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.mono{font-family:var(--code);font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+::-webkit-scrollbar{width:13px;height:13px}
+::-webkit-scrollbar-track{background:var(--stock)}
+::-webkit-scrollbar-thumb{background:var(--rule-firm);border:3px solid var(--stock)}
+::-webkit-scrollbar-thumb:hover{background:var(--graphite-2)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 clamp(0.9rem,3vw,1.6rem)}
+
+/* ── LOCALITY BLOCK: the one control that propagates ── */
+.locality{background:var(--hivis);border-bottom:3px solid var(--graphite)}
+.loc-in{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.75rem 0}
+.brand{display:flex;align-items:baseline;gap:0.5rem;font-weight:800;font-size:1.22rem;letter-spacing:-0.02em}
+.brand span{font-family:var(--code);font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75}
+.loc-stamp{
+  margin-left:auto;display:flex;align-items:center;gap:0.5rem;
+  font-family:var(--code);font-size:0.76rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;
+  color:var(--stamp);border:2.5px solid var(--stamp);padding:0.3rem 0.62rem;
+  background:rgba(255,255,255,0.42);transform:rotate(-1.2deg);
+}
+.loc-stamp button{color:inherit;font:inherit;text-decoration:underline;text-underline-offset:2px}
+@media (max-width:640px){.loc-stamp{margin-left:0;width:100%;justify-content:center}}
+
+/* ── TALLY BAND: running totals, the first thing on the page ── */
+.tallies{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--graphite);background:var(--sheet)}
+.tally{padding:0.85rem 0.9rem;border-right:1px solid var(--rule)}
+.tally:last-child{border-right:0}
+.tally b{display:block;font-family:var(--code);font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);line-height:1;letter-spacing:-0.03em}
+.tally small{display:block;font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-top:0.34rem}
+.tally.lit b{color:var(--survey)}
+@media (max-width:720px){.tallies{grid-template-columns:1fr 1fr}.tally:nth-child(-n+2){border-bottom:1px solid var(--rule)}.tally:nth-child(2n){border-right:0}}
+
+/* ── INDEX TABS ── */
+.tabs{display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;padding-top:0.6rem;border-bottom:2px solid var(--graphite)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  font-family:var(--code);font-size:0.74rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  padding:0.5rem 0.85rem;background:var(--shade);border:2px solid var(--graphite);border-bottom:0;
+  white-space:nowrap;flex:none;position:relative;top:2px;
+  transition:background-color 140ms var(--ease),transform 110ms var(--ease);
+}
+.tab:active{transform:scale(0.97)}
+.tab[aria-current="page"]{background:var(--sheet);padding-bottom:0.66rem}
+@media (hover:hover) and (pointer:fine){.tab:hover{background:var(--sheet)}}
+
+/* ── THE SHEET ── */
+main{background:var(--sheet);border-left:2px solid var(--graphite);border-right:2px solid var(--graphite);border-bottom:2px solid var(--graphite);min-height:60vh}
+.pad{padding:clamp(1rem,3vw,1.7rem)}
+h1{font-size:clamp(1.4rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-0.025em;line-height:1.1}
+h2{font-size:1.02rem;font-weight:800;letter-spacing:0.03em;text-transform:uppercase;padding-bottom:0.4rem;border-bottom:2px solid var(--graphite);margin-bottom:0.9rem;display:flex;align-items:baseline;gap:0.6rem;flex-wrap:wrap}
+h2 .note{font-family:var(--code);font-size:0.74rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--graphite-2);margin-left:auto}
+h3{font-size:0.98rem;font-weight:700}
+.lede{max-width:66ch;color:var(--graphite-2);margin-top:0.5rem}
+
+/* ── THE LIST: coded rows ── */
+.list{border-top:1px solid var(--rule)}
+.row{
+  display:grid;grid-template-columns:78px 1fr auto;gap:0.9rem;align-items:center;
+  padding:0.62rem 0.4rem;border-bottom:1px solid var(--rule);
+  transition:background-color 140ms var(--ease);
+}
+@media (hover:hover) and (pointer:fine){.row:hover{background:var(--shade)}}
+.row .code{font-family:var(--code);font-size:0.76rem;font-weight:700;color:var(--stamp);letter-spacing:0.04em}
+.row .nm{font-weight:600}
+.row .sci{font-family:var(--code);font-size:0.74rem;color:var(--graphite-2);font-style:italic}
+.row .meta{font-family:var(--code);font-size:0.74rem;color:var(--graphite-2)}
+.row .act{display:flex;gap:0.4rem;align-items:center}
+@media (max-width:640px){.row{grid-template-columns:64px 1fr;gap:0.6rem}.row .act{grid-column:1/-1;justify-content:flex-start;padding-left:64px}}
+
+/* tick box — the pencil check */
+.tick{
+  width:23px;height:23px;flex:none;border:2.5px solid var(--graphite);background:var(--sheet);
+  display:grid;place-items:center;transition:background-color 120ms var(--ease),transform 110ms var(--ease);
+}
+.tick:active{transform:scale(0.92)}
+.tick[aria-pressed="true"]{background:var(--hivis)}
+.tick i{font-size:15px;opacity:0;transition:opacity 120ms var(--ease)}
+.tick[aria-pressed="true"] i{opacity:1}
+
+/* ── CHIPS / TAGS ── */
+.chip{display:inline-flex;align-items:center;gap:0.3rem;font-family:var(--code);font-size:0.7rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid var(--rule-firm);color:var(--graphite-2);white-space:nowrap}
+.chip.on{background:var(--hivis);border-color:var(--graphite);color:var(--graphite);font-weight:700}
+.chip.warn{border-color:var(--survey-ink);color:var(--survey-ink)}
+
+/* ── BUTTONS ── */
+.btn{
+  display:inline-flex;align-items:center;gap:0.45rem;font-family:var(--code);font-size:0.76rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1rem;border:2.5px solid var(--graphite);
+  background:var(--sheet);text-decoration:none;
+  transition:transform 110ms var(--ease),background-color 140ms var(--ease);
+}
+.btn:active{transform:scale(0.97)}
+.btn-go{background:var(--survey);color:#fff;border-color:var(--graphite)}
+.btn-hi{background:var(--hivis)}
+.btn-sm{padding:0.34rem 0.6rem;font-size:0.7rem;border-width:2px}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--shade)}
+  .btn-go:hover{background:#C8481408}
+  .btn-go:hover{background:#C44A14}
+  .btn-hi:hover{background:var(--hivis-deep)}
+}
+
+/* ── FORM FIELDS: ruled blanks ── */
+.field{display:block;margin-bottom:0.9rem}
+.field > span{display:block;font-family:var(--code);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--graphite-2);margin-bottom:0.28rem}
+.field input,.field select{
+  width:100%;font-family:var(--code);font-size:0.92rem;padding:0.5rem 0.6rem;
+  background:var(--sheet);border:0;border-bottom:2.5px solid var(--graphite);color:var(--graphite);
+}
+.field input::placeholder{color:#9AA79B}
+.opts{display:flex;gap:0.5rem;flex-wrap:wrap}
+.opt{display:flex;align-items:center;gap:0.45rem;border:2px solid var(--rule-firm);padding:0.45rem 0.7rem;font-size:0.86rem;transition:background-color 130ms var(--ease),border-color 130ms var(--ease)}
+.opt[aria-pressed="true"]{border-color:var(--graphite);background:var(--hivis);font-weight:600}
+.opt i{font-size:17px}
+
+/* ── PANELS ── */
+.panel{border:2.5px solid var(--graphite);background:var(--sheet)}
+.panel > header{background:var(--graphite);color:var(--sheet);font-family:var(--code);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 0.7rem}
+.panel .body{padding:0.8rem 0.85rem}
+.split{display:grid;grid-template-columns:1fr 340px;gap:1.3rem;align-items:start}
+@media (max-width:900px){.split{grid-template-columns:1fr}}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:0.9rem}
+
+/* rebate — states print themselves as content */
+.rebate{border:2px solid var(--graphite);background:var(--sheet);padding:0.75rem 0.8rem}
+.rebate .amt{font-family:var(--code);font-weight:700;font-size:1.5rem;letter-spacing:-0.03em;line-height:1}
+.rebate .prog{font-weight:700;margin-top:0.2rem}
+.rebate .unverified{font-family:var(--code);font-size:0.7rem;color:var(--survey-ink);border-top:1px dashed var(--survey-ink);margin-top:0.55rem;padding-top:0.4rem}
+
+/* wildlife log */
+.sight{display:flex;align-items:center;gap:0.7rem;padding:0.5rem 0.3rem;border-bottom:1px solid var(--rule)}
+.sight .dot{width:26px;height:26px;flex:none;display:grid;place-items:center;border:2px solid var(--graphite)}
+.score{font-family:var(--code);font-size:clamp(2rem,6vw,3.2rem);font-weight:700;letter-spacing:-0.04em;line-height:1}
+
+/* month strip */
+.months{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;padding-bottom:0.5rem}
+.months::-webkit-scrollbar{display:none}
+.mo{font-family:var(--code);font-size:0.72rem;font-weight:700;padding:0.4rem 0.6rem;border:2px solid var(--rule-firm);flex:none;transition:background-color 130ms var(--ease)}
+.mo[aria-pressed="true"]{background:var(--graphite);color:var(--sheet);border-color:var(--graphite)}
+
+/* landing */
+.landing{display:grid;place-items:center;min-height:64vh;text-align:center;padding:2rem 1rem}
+.landing h1{font-size:clamp(1.9rem,6vw,3.4rem);max-width:16ch;margin:0 auto}
+.landing .sub{max-width:52ch;margin:0.9rem auto 1.8rem;color:var(--graphite-2)}
+.landing .choices{display:flex;gap:0.8rem;flex-wrap:wrap;justify-content:center}
+.demo-note{font-family:var(--code);font-size:0.72rem;color:var(--graphite-2);margin-top:1.6rem;border-top:1px solid var(--rule);padding-top:0.7rem;max-width:46ch}
+
+/* demo banner */
+.demo-bar{background:var(--stamp);color:#fff;font-family:var(--code);font-size:0.74rem;letter-spacing:0.05em;padding:0.42rem 0;text-align:center}
+.demo-bar button{text-decoration:underline;text-underline-offset:2px;font-weight:700}
+
+/* empty state */
+.empty{text-align:center;padding:2.4rem 1rem;color:var(--graphite-2)}
+.empty i{font-size:34px;color:var(--rule-firm)}
+
+/* ── SIGNATURE MOTION: rows re-rank in place ── */
+.row,.rebate{will-change:auto}
+@media (prefers-reduced-motion:no-preference){
+  .flip{transition:transform 420ms var(--ease)}
+}
+footer{font-family:var(--code);font-size:0.72rem;color:var(--graphite-2);padding:1.1rem 0 2rem;display:flex;gap:0.8rem;justify-content:space-between;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<!--
+THESIS: The yard as a running field list — dated, coded, tallied rows in a book built for
+outdoor use. Refuses the calm-plant-app arrangement of soft cards on a sage ground.
+OWN-WORLD: Rite-in-the-Rain notebook. Waterproof grid stock #E7EBE3 ruled at 22px, graphite
+#1F2420, high-vis cover yellow #F2C300 carrying logged/active state, surveyor orange #E2571E
+for action, violet #5B3A8C as locality stamp ink. Archivo for the form, Azeret Mono for codes,
+figures and tallies.
+STORY: A visitor picks a demo yard or their own, sees their locality stamped and their tallies
+running, and adds a row — a plant, a sighting, a ticked care task.
+FIRST VIEWPORT: Hi-vis locality band (brand left, stamped LOCALITY · ZONE right), a four-cell
+tally band of running figures, index tabs, then the list itself. The primary action is the row
+you add, top-right of the list.
+FORM: The Field List — candidate 4 of 7 (assigned by the roll). Seed key a1220fee. Code-led:
+image workspace had zero credits.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
+<div id="app"></div>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   ReWild — the field list for your yard
+   Single file, no build step, no framework, no backend.
+   All state lives in localStorage under one key.
+   ════════════════════════════════════════════════════════════════ */
+'use strict';
+
+/* ── DATA ─────────────────────────────────────────────────────── */
+const DATA = {"plants":[{"symbol":"ANGE2","name":"Big bluestem","sciName":"Andropogon gerardii Vitman","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Andropogon_gerardii.jpg/320px-Andropogon_gerardii.jpg"},{"symbol":"SCSC","name":"Little bluestem","sciName":"Schizachyrium scoparium (Michx.) Nash","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Schizachyrium_scoparium.jpg/320px-Schizachyrium_scoparium.jpg"},{"symbol":"ECPU","name":"Purple coneflower","sciName":"Echinacea purpurea (L.) Moench","family":"Aster family","category":"Forb/herb","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Echinacea_purpurea_2.jpg/320px-Echinacea_purpurea_2.jpg"},{"symbol":"MOFI","name":"Wild bergamot","sciName":"Monarda fistulosa L.","family":"Mint family","category":"Forb/herb","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","butterfly"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Monarda_fistulosa_2.jpg/320px-Monarda_fistulosa_2.jpg"},{"symbol":"RUHI2","name":"Black-eyed Susan","sciName":"Rudbeckia hirta L.","family":"Aster family","category":"Forb/herb","duration":"Annual","tags":[{"label":"Annual","variant":"badge-muted"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Rudbeckia_hirta.jpg/320px-Rudbeckia_hirta.jpg"},{"symbol":"ASNO","name":"New England aster","sciName":"Symphyotrichum novae-angliae (L.) G.L.Nesom","family":"Aster family","category":"Forb/herb","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","butterfly"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Symphyotrichum_novae-angliae.jpg/320px-Symphyotrichum_novae-angliae.jpg"},{"symbol":"ASCA4","name":"Common milkweed","sciName":"Asclepias syriaca L.","family":"Dogbane family","category":"Forb/herb","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","butterfly"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Asclepias_syriaca_2.jpg/320px-Asclepias_syriaca_2.jpg"},{"symbol":"SORI","name":"Indian grass","sciName":"Sorghastrum nutans (L.) Nash","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sorghastrum_nutans.jpg/320px-Sorghastrum_nutans.jpg"},{"symbol":"BOFR2","name":"Blue grama","sciName":"Bouteloua gracilis (Willd. ex Kunth) Lag. ex Griffiths","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Bouteloua_gracilis.jpg/320px-Bouteloua_gracilis.jpg"},{"symbol":"ENFA","name":"Apache plume","sciName":"Fallugia paradoxa (D.Don) Endl. ex Torr.","family":"Rose family","category":"Shrub","duration":"Perennial","tags":[{"label":"Shrub","variant":"badge-amber"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Fallugia_paradoxa.jpg/320px-Fallugia_paradoxa.jpg"},{"symbol":"PHCO4","name":"Desert marigold","sciName":"Baileya multiradiata Harvey & A.Gray ex A.Gray","family":"Aster family","category":"Forb/herb","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Baileya_multiradiata.jpg/320px-Baileya_multiradiata.jpg"},{"symbol":"PATO4","name":"Purple prickly pear","sciName":"Opuntia macrocentra Engelm.","family":"Cactus family","category":"Cactus","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Low water","variant":"badge-amber"}],"wildlifeValue":["bird","general"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Opuntia_macrocentra.jpg/320px-Opuntia_macrocentra.jpg"},{"symbol":"CEGR","name":"Sideoats grama","sciName":"Bouteloua curtipendula (Michx.) Torr.","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Bouteloua_curtipendula.jpg/320px-Bouteloua_curtipendula.jpg"},{"symbol":"CALI","name":"California poppy","sciName":"Eschscholzia californica Cham.","family":"Poppy family","category":"Forb/herb","duration":"Annual","tags":[{"label":"Annual","variant":"badge-muted"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Eschscholzia_californica_2.jpg/320px-Eschscholzia_californica_2.jpg"},{"symbol":"SADO","name":"Toyon","sciName":"Heteromeles arbutifolia (Lindl.) M.Roem.","family":"Rose family","category":"Shrub","duration":"Perennial","tags":[{"label":"Shrub","variant":"badge-amber"},{"label":"Bird food","variant":"badge-soil"}],"wildlifeValue":["bird","pollinator"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Heteromeles_arbutifolia.jpg/320px-Heteromeles_arbutifolia.jpg"},{"symbol":"ELGL","name":"Blue wild rye","sciName":"Elymus glaucus Buckley","family":"Grass family","category":"Grass","duration":"Perennial","tags":[{"label":"Perennial","variant":"badge-green"},{"label":"Native grass","variant":"badge-leaf"}],"wildlifeValue":["ground cover","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Elymus_glaucus.jpg/320px-Elymus_glaucus.jpg"},{"symbol":"COCO2","name":"Coyote brush","sciName":"Baccharis pilularis DC.","family":"Aster family","category":"Shrub","duration":"Perennial","tags":[{"label":"Shrub","variant":"badge-amber"},{"label":"Pollinator","variant":"badge-green"}],"wildlifeValue":["pollinator","bird"],"imageUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Baccharis_pilularis.jpg/320px-Baccharis_pilularis.jpg"}],"rebates":[{"state":"WI","city":"Milwaukee","zip_prefixes":["532","530","531"],"program":"Milwaukee Waterworks Lawn-to-Garden","amount_per_sqft":0.5,"max_amount":500,"min_sqft":100,"description":"Cash rebate for replacing turf with native plants, rain gardens, or permeable surfaces. Application through Milwaukee Water Works.","url":"https://city.milwaukee.gov/water","category":"Lawn replacement"},{"state":"WI","city":"Madison","zip_prefixes":["537"],"program":"Madison Water Utility Healthy Lawn Initiative","amount_per_sqft":0.35,"max_amount":350,"min_sqft":100,"description":"Rebate for lawns converted to native wildflower meadows or rain gardens. Must use plants from approved native species list.","url":"https://www.madisonwater.org","category":"Lawn replacement"},{"state":"CO","city":"Denver","zip_prefixes":["802","800","801"],"program":"Denver Water Xeriscape Incentive Program","amount_per_sqft":1,"max_amount":2000,"min_sqft":500,"description":"Replace turf with water-wise or native plants. Denver Water reimburses $1 per sq ft. Must convert at least 500 sq ft of irrigated lawn.","url":"https://www.denverwater.org/conservation/rebates","category":"Water-wise landscaping"},{"state":"CO","city":"Boulder","zip_prefixes":["803"],"program":"Boulder's Slow the Flow Turf Removal","amount_per_sqft":1.5,"max_amount":3000,"min_sqft":200,"description":"One of Colorado's most generous rebate programs. Up to $1.50 per sq ft for turf removal and replacement with drought-tolerant or native landscaping.","url":"https://bouldercolorado.gov/services/rebates","category":"Lawn replacement"},{"state":"CO","city":"Fort Collins","zip_prefixes":["805"],"program":"Fort Collins Utilities Xeriscape Rebate","amount_per_sqft":0.75,"max_amount":1500,"min_sqft":200,"description":"Rebate for replacing water-intensive turf with xeriscape or native plant landscaping.","url":"https://www.fcgov.com/utilities/residential/conserve","category":"Water-wise landscaping"},{"state":"AZ","city":"Tucson","zip_prefixes":["857","856"],"program":"Tucson Water Landscape Rebate Program","amount_per_sqft":1,"max_amount":2000,"min_sqft":100,"description":"Tucson Water pays $1 per sq ft (up to $2,000) for removing active lawn and replacing with desert-adapted or native plants.","url":"https://www.tucsonaz.gov/water/rebates","category":"Desert landscaping"},{"state":"AZ","city":"Phoenix","zip_prefixes":["850","851","852","853","854","855"],"program":"Phoenix Water Services Turf Removal","amount_per_sqft":0.75,"max_amount":1500,"min_sqft":200,"description":"Phoenix Water helps residents replace water-hungry grass with drought-tolerant or native desert plants. Part of the Water Use It Wisely programme.","url":"https://wateruseitwisely.com/rebates","category":"Desert landscaping"},{"state":"AZ","city":"Scottsdale","zip_prefixes":["852"],"program":"Scottsdale Water Xeriscape Rebate","amount_per_sqft":1,"max_amount":2000,"min_sqft":250,"description":"Scottsdale customers can receive $1 per sq ft for removing turf and installing desert-adapted native plants.","url":"https://www.scottsdaleaz.gov/water/conservation","category":"Desert landscaping"},{"state":"CA","city":"Los Angeles","zip_prefixes":["900","901","902","903","904","905","906","907","908"],"program":"LADWP Lawn-to-Garden Program","amount_per_sqft":3,"max_amount":6000,"min_sqft":100,"description":"One of the highest rebates in the nation. LADWP pays $3 per sq ft for removing turf and replacing with California native or drought-tolerant plants.","url":"https://www.ladwp.com/conservation/residential/rebates-and-programs","category":"Lawn replacement"},{"state":"CA","city":"San Diego","zip_prefixes":["919","920","921","922"],"program":"Pure Water San Diego WaterSmart Landscape","amount_per_sqft":2,"max_amount":4000,"min_sqft":200,"description":"San Diego County Water Authority offers $2/sq ft for converting turf to drought-tolerant or native California plants.","url":"https://www.waternow.com/rebates","category":"Lawn replacement"},{"state":"CA","city":"Oakland","zip_prefixes":["946"],"program":"East Bay MUD Lawn Conversion Rebate","amount_per_sqft":2,"max_amount":3000,"min_sqft":100,"description":"East Bay Municipal Utility District offers a robust rebate for turf removal and native or drought-tolerant landscaping.","url":"https://www.ebmud.com/conservation/at-home/rebates","category":"Lawn replacement"},{"state":"CA","city":"San Francisco","zip_prefixes":["941"],"program":"SFPUC Greener Spaces Rebate","amount_per_sqft":1,"max_amount":2000,"min_sqft":50,"description":"San Francisco Public Utilities Commission rebate for replacing impervious surfaces and turf with native plants and permeable surfaces.","url":"https://sfwater.org/conservation","category":"Lawn replacement"},{"state":"MD","city":"Statewide","zip_prefixes":["206","207","208","209","210","211","212","213","214","215","216","217","218","219"],"program":"Maryland Bay Restoration Fund — Lawn Fertilizer Reduction","amount_per_sqft":0.25,"max_amount":500,"min_sqft":200,"description":"Maryland incentivizes homeowners to reduce lawn area and install native plant buffers near waterways. Check with your county for matching funds.","url":"https://mde.maryland.gov/programs/water/bays","category":"Native buffers"},{"state":"DC","city":"Washington DC","zip_prefixes":["200"],"program":"DC DOEE RiverSmart Rebate","amount_per_sqft":2.5,"max_amount":1200,"min_sqft":100,"description":"DC's RiverSmart Homes programme offers rebates for installing rain gardens, native plants, and permeable pavers. One of the Mid-Atlantic's best programmes.","url":"https://doee.dc.gov/service/riversmart-homes","category":"Lawn replacement"},{"state":"NV","city":"Las Vegas","zip_prefixes":["889","891"],"program":"Southern Nevada Water Authority Water Smart Landscapes","amount_per_sqft":3,"max_amount":3000,"min_sqft":500,"description":"SNWA pays $3 per sq ft (up to $3,000) for removing grass and installing desert-adapted landscaping. One of the nation's highest rebate rates due to severe water scarcity.","url":"https://www.snwa.com/rebates-conservation/water-smart-landscapes","category":"Desert landscaping"},{"state":"TX","city":"Austin","zip_prefixes":["787","788"],"program":"Austin Water Landscape Rebate Program","amount_per_sqft":0.5,"max_amount":1000,"min_sqft":200,"description":"Austin Water offers rebates for converting lawn to water-efficient or native Texas landscapes. Includes soil prep and mulch allowances.","url":"https://www.austintexas.gov/page/rebates-residents","category":"Water-wise landscaping"},{"state":"TX","city":"San Antonio","zip_prefixes":["782"],"program":"San Antonio Water System Landscape Coupon Program","amount_per_sqft":0.4,"max_amount":800,"min_sqft":200,"description":"SAWS provides coupons for residents who replace turf with xeric or native plants, including drip irrigation upgrades.","url":"https://www.saws.org/conservation/landscape-coupon-program","category":"Water-wise landscaping"}],"wildlife":[{"value":"bee","label":"Bee / Wasp","icon":"ti-bug","color":"#C9A96E"},{"value":"butterfly","label":"Butterfly / Moth","icon":"ti-butterfly","color":"#8FB87A"},{"value":"bird","label":"Bird","icon":"ti-feather","color":"#7A5C38"},{"value":"beetle","label":"Beetle / Other insect","icon":"ti-bug","color":"#3B6D11"},{"value":"mammal","label":"Mammal","icon":"ti-paw","color":"#9B7D55"},{"value":"frog","label":"Amphibian / Reptile","icon":"ti-droplet","color":"#5B8E5B"},{"value":"spider","label":"Spider / Other","icon":"ti-circle","color":"#A89880"}],"wildlifeScore":{"bee":3,"butterfly":3,"bird":2,"beetle":1.5,"mammal":2,"frog":2,"spider":1},"sun":[{"value":"full_sun","label":"Full sun","desc":"6+ hours direct sun","icon":"ti-sun"},{"value":"part_shade","label":"Part shade","desc":"3–6 hours","icon":"ti-cloud-sun"},{"value":"full_shade","label":"Full shade","desc":"Under 3 hours","icon":"ti-cloud"}],"goals":[{"value":"pollinators","label":"Pollinators","icon":"ti-bug","desc":"Bees, butterflies, moths"},{"value":"birds","label":"Birds","icon":"ti-feather","desc":"Seed and nectar hosts"},{"value":"low_water","label":"Low water","icon":"ti-droplet-off","desc":"Drought-tolerant only"},{"value":"pet_safe","label":"Pet safe","icon":"ti-paw","desc":"Non-toxic species only"},{"value":"low_maint","label":"Low maintenance","icon":"ti-scissors","desc":"Minimal care needed"},{"value":"food_source","label":"Food source","icon":"ti-apple","desc":"Edible or fruit-bearing"}],"months":{"0":{"all":["Order native seeds now — many nurseries open order books in January.","Review last season's sightings log to shape your spring planting."],"cold":["Check mulch depth over dormant perennials — aim for 3–4 inches to protect roots."],"temperate":["Cut back ornamental grasses now before new growth begins."],"warm":["Plant cool-season natives while temperatures stay mild."]},"1":{"all":["Start milkweed seeds indoors 8–10 weeks before your last frost date.","Research local rebate programmes before spring planting season begins."],"cold":["Keep bird feeders stocked — native birds need extra energy in late winter."],"temperate":["Prune native shrubs before buds begin to swell."],"warm":["Plant dormant native grasses now for strong early-spring establishment."]},"2":{"all":["Watch for early pollinators — native bees emerge when temps hit 50°F.","Log any overwintering wildlife spotted in your yard this month."],"cold":["Harden off seedlings gradually as temperatures climb.","Wait until soil reaches 50°F before planting outdoors."],"temperate":["Plant bare-root native shrubs and trees while still dormant."],"warm":["Direct-sow native wildflower seeds — many need light to germinate, so don't cover them."]},"3":{"all":["April rains: reduce irrigation — natives establish best with natural rainfall.","Log your first butterfly sightings to start building your biodiversity score."],"cold":["Plant cold-hardy natives: wild ginger, trillium, native violets.","Add a brush pile — native bees nest in hollow stems over winter."],"temperate":["Set out transplanted perennials after your last frost date.","Add a shallow water source: pollinators need water as much as nectar."],"warm":["Deadhead spring bloomers lightly to encourage a second flush of flowers."]},"4":{"all":["May is peak native bee emergence — avoid all pesticides this month.","Set out a bee water dish: shallow plate with pebbles and fresh water."],"cold":["Plant after last frost: coneflowers, black-eyed Susan, native asters.","May brings peak bird migration — log your sightings this month!"],"temperate":["Divide and transplant overcrowded native clumps for maximum spread.","Leave patches of bare soil for ground-nesting native bees."],"warm":["Apply 2–3 inches of wood chip mulch now to retain moisture through summer heat."]},"5":{"all":["Don't deadhead spent flowers yet — seeds feed birds and insects.","June is peak bloom for most natives — keep your sightings log updated!"],"cold":["Plant late-season natives now: Joe-Pye weed, ironweed, native goldenrod.","Water new transplants deeply but infrequently to encourage deep roots."],"temperate":["Cut back early bloomers by one-third to delay flowering and extend bloom season."],"warm":["Resist watering established natives — mild drought stress drives deeper root growth."]},"6":{"all":["Monarchs may be moving through — check milkweed leaves for eggs and caterpillars.","Leave 'messy' corners: leaf litter and hollow stems house native insect larvae."],"cold":["Deadhead coneflowers lightly to encourage rebloom through August.","Water only first-year plants during heat waves — established natives don't need it."],"temperate":["Collect seeds from early bloomers — store in labelled paper envelopes in a cool spot."],"warm":["Cut spent native grasses back by one-third to stimulate fresh late-summer growth."]},"7":{"all":["August is prime seed-saving season — harvest from native wildflowers now.","Late-summer pollinators are most active — keep logging your sightings."],"cold":["Plant native asters and goldenrod — critical fall nectar for migrating monarchs.","Start dividing spring-blooming natives now for fall transplanting."],"temperate":["Direct-sow native seeds for fall establishment — many require a cold period to germinate."],"warm":["Plant native grasses now — warm soil speeds establishment before winter dormancy."]},"8":{"all":["September is the single best month for planting native plants.","Fall nectar is critical for monarchs — leave goldenrod and asters standing."],"cold":["Plant native trees and shrubs — fall establishment is stronger than spring planting.","Collect seeds from native perennials before first frost."],"temperate":["Plant native spring bulbs now: camassias, wild hyacinth, trout lilies.","Overseed bare patches with native grass seed before frost arrives."],"warm":["Cut back invasive warm-season weeds before they set seed for next year."]},"9":{"all":["Leave seed heads standing all winter — they feed birds through cold months.","October is ideal for planting native trees, shrubs, and perennials."],"cold":["Apply 3–4 inches of shredded leaf mulch — the best free insulation available.","Leave hollow stems standing — overwintering native bees nest inside them."],"temperate":["Plant native spring wildflowers now: bloodroot, wild columbine, Dutchman's breeches.","Rake leaves onto garden beds rather than bagging — free, excellent mulch."],"warm":["Plant cool-season native grasses and forbs through October for spring colour."]},"10":{"all":["Leave all standing plant material through winter — wildlife depends on it.","Review your yard plan and order plants for spring delivery before nurseries sell out."],"cold":["Protect newly planted natives with extra mulch before the ground freezes.","Build brush piles and leaf mounds for overwintering wildlife habitat."],"temperate":["Plant garlic and native spring ephemerals before the ground freezes solid."],"warm":["Continue planting native perennials while the soil stays workable."]},"11":{"all":["Winter is planning season — sketch out your spring planting goals.","Support your local native plant society for great plants at spring sales."],"cold":["Keep bird feeders stocked with native sunflowers and black oil seeds through winter.","Avoid clearing beds — hollow stems protect overwintering native insects."],"temperate":["Order from native plant nurseries early — popular plants sell out by February.","Plant native winter berries: holly, beautyberry, dogwood — vital winter bird food."],"warm":["Plant native trees and shrubs during mild winter weather for a spring head-start."]}},"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"market":[{"id":"s1","name":"Milkweed Seed Collection","sub":"3 native Asclepias species","price":"$9.95","src":"Prairie Moon Nursery","icon":"ti-leaf","color":"#C2185B","bg":"#FCE4EC","desc":"Attracts and supports monarch butterflies throughout their lifecycle. Includes common milkweed, butterfly weed, and swamp milkweed.","link":"https://www.prairiemoon.com","tag":"Monarch essential","group":"seed"},{"id":"s2","name":"Native Prairie Wildflower Mix","sub":"20+ species blend","price":"$14.95","src":"American Meadows","icon":"ti-flower","color":"#2E7D32","bg":"#E8F5E9","desc":"A diverse mix of native prairie wildflowers. Self-seeding, low maintenance, and beloved by native bees and butterflies across the Midwest.","link":"https://www.americanmeadows.com","tag":"Best seller","group":"seed"},{"id":"s3","name":"Purple Coneflower Seeds","sub":"Echinacea purpurea","price":"$5.95","src":"True Leaf Market","icon":"ti-rosette","color":"#7B1FA2","bg":"#F3E5F5","desc":"One of the most versatile native plants — blooms for months, seeds feed goldfinches in fall, and roots support native bee nesting habitat.","link":"https://www.trueleafmarket.com","tag":"Great for beginners","group":"seed"},{"id":"s4","name":"Black-Eyed Susan Seeds","sub":"Rudbeckia hirta","price":"$4.95","src":"Ernst Seed Co.","icon":"ti-sun","color":"#F57F17","bg":"#FFF9C4","desc":"Classic native wildflower with long-lasting golden blooms. Exceptionally tolerant of drought, clay soils, and full sun.","link":"https://www.ernstseed.com","tag":"Drought tolerant","group":"seed"},{"id":"s5","name":"Wild Bee Balm","sub":"Monarda fistulosa","price":"$6.95","src":"Prairie Moon Nursery","icon":"ti-droplet","color":"#AD1457","bg":"#FCE4EC","desc":"Wild bergamot attracts native bumblebees, hummingbirds, and sphinx moths. Fragrant, drought tolerant, and deer resistant once established.","link":"https://www.prairiemoon.com","tag":"Pollinators love it","group":"seed"},{"id":"s6","name":"Native Goldenrod Mix","sub":"Solidago spp. blend","price":"$7.95","src":"American Meadows","icon":"ti-star","color":"#F9A825","bg":"#FFFDE7","desc":"Critical fall nectar source for migrating monarchs and native bees preparing for winter. Not the cause of hay fever — that's ragweed.","link":"https://www.americanmeadows.com","tag":"Fall nectar powerhouse","group":"seed"},{"id":"k1","name":"Pollinator Paradise Starter","sub":"8-plant native bundle","price":"$49.95","src":"Prairie Nursery","icon":"ti-butterfly","color":"#C2185B","bg":"#FCE4EC","desc":"8 native plugs selected for maximum pollinator impact — ideal for first-time native gardeners who want results the first season.","link":"https://www.prairienursery.com","badge":"Most popular","plants":["Purple coneflower x2","Wild bee balm x2","New England aster x2","Common ironweed x2"],"group":"kit"},{"id":"k2","name":"Monarch Waystation Kit","sub":"Certify your garden","price":"$39.95","src":"Everwilde Farms","icon":"ti-star","color":"#F57F17","bg":"#FFF9C4","desc":"Everything needed to certify your yard as an official Monarch Waystation. Milkweed for breeding plus fall nectar plants for fuelling migration.","link":"https://www.everwilde.com","badge":"Certify your yard","plants":["Common milkweed x3","Butterfly weed x2","Native goldenrod x2","New England aster x1"],"group":"kit"},{"id":"k3","name":"Native Groundcover Bundle","sub":"Lawn replacement plants","price":"$34.95","src":"Shooting Star Nursery","icon":"ti-leaf","color":"#2E7D32","bg":"#E8F5E9","desc":"Replace sections of turf with spreading native groundcovers. Low-growing, no mowing, and incredibly valuable for ground-nesting native bees.","link":"https://www.shootingstarnursery.com","badge":"Replace your lawn","plants":["Wild ginger x3","Blue-eyed grass x3","Wild strawberry x3","Native violets x3"],"group":"kit"},{"id":"k4","name":"Rain Garden Bundle","sub":"Plants for wet low spots","price":"$44.95","src":"Prairie Moon Nursery","icon":"ti-droplet","color":"#0277BD","bg":"#E1F5FE","desc":"Native plants that thrive in low areas that flood occasionally. Naturally filters stormwater, reduces runoff, and looks stunning all season.","link":"https://www.prairiemoon.com","badge":"Manage stormwater","plants":["Blue flag iris x2","Cardinal flower x2","Swamp milkweed x2","Blue wild indigo x2"],"group":"kit"},{"id":"n1","name":"Prairie Moon Nursery","city":"Winona","state":"MN","specs":["Prairie grasses","Woodland plants","Wetland species"],"url":"https://www.prairiemoon.com","desc":"The gold standard in native plants. Ships bare-root plugs nationwide with exceptionally detailed species information and zone guidance.","sponsored":true,"ships":true,"group":"nursery"},{"id":"n2","name":"Prairie Nursery","city":"Westfield","state":"WI","specs":["Prairie plants","Native grasses","Seed mixes"],"url":"https://www.prairienursery.com","desc":"Wisconsin-based nursery specialising in true prairie species. Trusted by restoration ecologists and home gardeners for over 40 years.","sponsored":true,"ships":true,"group":"nursery"},{"id":"n3","name":"High Country Gardens","city":"Santa Fe","state":"NM","specs":["Drought tolerant","Xeriscape","Southwest natives"],"url":"https://www.highcountrygardens.com","desc":"The best source for water-wise plants in the arid West. Ships to most of the US — an excellent first stop for Denver and Phoenix gardeners.","sponsored":true,"ships":true,"group":"nursery"},{"id":"n4","name":"Las Pilitas Nursery","city":"Escondido","state":"CA","specs":["California natives","Chaparral","Coastal species"],"url":"https://www.laspilitas.com","desc":"California-native specialists with one of the most thorough native plant databases available anywhere online. Essential for CA gardeners.","sponsored":false,"ships":false,"group":"nursery"},{"id":"n5","name":"Shooting Star Nursery","city":"Georgetown","state":"KY","specs":["Native perennials","Woodland plants","Eastern natives"],"url":"https://www.shootingstarnursery.com","desc":"Family-owned nursery serving the Eastern US. Known for rare and hard-to-find Eastern native species not carried by larger suppliers.","sponsored":false,"ships":true,"group":"nursery"},{"id":"n6","name":"Everwilde Farms","city":"Wild Rose","state":"WI","specs":["Native seeds","Wildflowers","Native grasses"],"url":"https://www.everwilde.com","desc":"Specialists in high-quality native seed packets with excellent germination rates and an enormous species selection at accessible prices.","sponsored":false,"ships":true,"group":"nursery"}]};
+
+/* ── STATE ────────────────────────────────────────────────────── */
+const KEY = 'rewild_field_list_v1';
+const BLANK = { view:'landing', yard:null, plants:[], sightings:[], done:{}, month:new Date().getMonth(), demo:false };
+
+let S = load();
+
+function load(){
+  try { const r = localStorage.getItem(KEY); return r ? Object.assign({}, BLANK, JSON.parse(r)) : Object.assign({}, BLANK); }
+  catch { return Object.assign({}, BLANK); }
+}
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} }
+function set(patch){ Object.assign(S, patch); save(); render(); }
+
+/* ── HELPERS ──────────────────────────────────────────────────── */
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const el = (id) => document.getElementById(id);
+const money = n => '$' + n.toLocaleString('en-US');
+
+/* Climate band from state — drives which care tips apply. */
+const COLD = ['WI','MN','MI','ME','VT','NH','ND','SD','MT','WY','AK','IA','NY','MA'];
+const WARM = ['AZ','NV','TX','FL','CA','NM','LA','GA','AL','MS','SC','HI'];
+function band(st){ if (COLD.includes(st)) return 'cold'; if (WARM.includes(st)) return 'warm'; return 'temperate'; }
+
+/* Rebates matching the yard, by state then ZIP prefix. */
+function matchingRebates(){
+  if (!S.yard || !S.yard.state) return [];
+  const zip = (S.yard.zip||'').slice(0,3);
+  return DATA.rebates
+    .filter(r => r.state === S.yard.state)
+    .map(r => ({ ...r, exact: r.zip_prefixes.includes(zip) }))
+    .sort((a,b) => (b.exact?1:0)-(a.exact?1:0));
+}
+/* Dollars on the table, given the plot size the user entered. */
+function rebateValue(){
+  const sqft = parseInt(S.yard && S.yard.sqft,10);
+  if (!sqft) return 0;
+  return matchingRebates().reduce((best,r) =>
+    sqft < r.min_sqft ? best : Math.max(best, Math.min(sqft * r.amount_per_sqft, r.max_amount)), 0);
+}
+/* Habitat score — weighted by species group, the wildlife log's payoff. */
+function habitatScore(){
+  return Math.round(S.sightings.reduce((n,s) => n + (DATA.wildlifeScore[s.kind]||1), 0));
+}
+/* Plants filtered by the yard's goals and sorted by fit — the re-rank. */
+function rankedPlants(){
+  const goals = (S.yard && S.yard.goals) || [];
+  const score = p => {
+    let n = 0;
+    const wv = p.wildlifeValue.join(' ');
+    if (goals.includes('pollinators') && /pollinator|butterfly/.test(wv)) n += 2;
+    if (goals.includes('birds') && /bird/.test(wv)) n += 2;
+    if (goals.includes('low_maint') && p.duration === 'Perennial') n += 1;
+    if (goals.includes('low_water') && /Cactus|Shrub|Grass/.test(p.category)) n += 1;
+    return n;
+  };
+  return DATA.plants.map(p => ({ ...p, fit: score(p) })).sort((a,b) => b.fit - a.fit || a.name.localeCompare(b.name));
+}
+
+/* ── SIGNATURE MOTION ─────────────────────────────────────────────
+   When a constraint changes, rows re-rank in place rather than
+   silently re-rendering. First/Last/Invert/Play against the list.  */
+function reRank(container, mutate){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !container) { mutate(); return; }
+  const first = new Map();
+  container.querySelectorAll('[data-key]').forEach(n => first.set(n.dataset.key, n.getBoundingClientRect().top));
+  mutate();
+  const next = document.querySelector('#'+container.id);
+  if (!next) return;
+  next.querySelectorAll('[data-key]').forEach(n => {
+    const was = first.get(n.dataset.key);
+    if (was == null) return;
+    const dy = was - n.getBoundingClientRect().top;
+    if (!dy) return;
+    n.style.transform = 'translateY('+dy+'px)';
+    requestAnimationFrame(() => { n.classList.add('flip'); n.style.transform = ''; });
+    setTimeout(() => { n.classList.remove('flip'); }, 460);
+  });
+}
+
+/* ── SHELL ────────────────────────────────────────────────────── */
+const TABS = [
+  ['yard','My yard'], ['plants','Plants'], ['rebates','Rebates'],
+  ['wildlife','Wildlife'], ['calendar','Calendar'], ['market','Marketplace']
+];
+
+function shell(inner){
+  const y = S.yard || {};
+  const loc = y.city ? (y.city + ', ' + y.state + (y.zip ? ' · ' + y.zip : '')) : 'No locality set';
+  return (S.demo ? '<div class="demo-bar">Demo yard — sample data for Milwaukee, WI. <button data-act="reset">Start my own instead</button></div>' : '')
+  + '<div class="locality"><div class="wrap loc-in">'
+  +   '<div class="brand">ReWild <span>Field List</span></div>'
+  +   '<div class="loc-stamp"><i class="ti ti-map-pin" aria-hidden="true"></i>' + esc(loc)
+  +     ' · ' + esc(band(y.state||'').toUpperCase())
+  +     ' <button data-act="edit-loc">change</button></div>'
+  + '</div></div>'
+  + '<div class="wrap">'
+  +   tallyBand()
+  +   '<nav class="tabs" aria-label="Sections">'
+  +     TABS.map(([id,label]) =>
+  '<button class="tab" data-act="go" data-view="'+id+'"'+(S.view===id?' aria-current="page"':'')+'>'+esc(label)+'</button>').join('')
+  +   '</nav>'
+  +   '<main>' + inner + '</main>'
+  +   '<footer><span>ReWild · field list</span><span>Everything is stored in this browser only.</span></footer>'
+  + '</div>';
+}
+
+function tallyBand(){
+  const v = rebateValue();
+  return '<div class="tallies">'
+  + '<div class="tally"><b class="mono">'+S.plants.length+'</b><small>Species logged</small></div>'
+  + '<div class="tally"><b class="mono">'+S.sightings.length+'</b><small>Sightings</small></div>'
+  + '<div class="tally lit"><b class="mono">'+habitatScore()+'</b><small>Habitat score</small></div>'
+  + '<div class="tally"><b class="mono">'+(v?money(Math.round(v)):'—')+'</b><small>Rebate on the table</small></div>'
+  + '</div>';
+}
+
+/* ── VIEWS ────────────────────────────────────────────────────── */
+function viewLanding(){
+  return '<div class="landing"><div>'
+  + '<h1>Keep your yard as a field list.</h1>'
+  + '<p class="sub">Native plants matched to your location and light, the cash rebates that pay for replacing lawn, and a wildlife log that turns the whole argument into something you watched happen.</p>'
+  + '<div class="choices">'
+  +   '<button class="btn btn-go" data-act="demo"><i class="ti ti-eye" aria-hidden="true"></i> Explore a demo yard</button>'
+  +   '<button class="btn btn-hi" data-act="setup"><i class="ti ti-pencil" aria-hidden="true"></i> Set up my own</button>'
+  + '</div>'
+  + '<p class="demo-note">The demo opens a worked Milwaukee yard with plants, sightings and matched rebates already in it. Nothing is sent anywhere — all state lives in this browser.</p>'
+  + '</div></div>';
+}
+
+function viewYard(){
+  const y = S.yard;
+  if (!y || !y.setupDone) return viewSetup();
+  const b = band(y.state);
+  const tips = (DATA.months[S.month] || {});
+  const list = (tips.all||[]).concat(tips[b]||[]);
+  return '<div class="pad">'
+  + '<h1>Your yard</h1>'
+  + '<p class="lede">'+esc(y.sqft?y.sqft+' sq ft':'Plot size not set')+' · '+esc(sunLabel(y.sun))+' · '+esc(b)+' climate band</p>'
+  + '<div class="split" style="margin-top:1.3rem">'
+  +   '<section>'
+  +     '<h2>This month <span class="note">'+esc(DATA.monthNames[S.month])+'</span></h2>'
+  +     (list.length ? '<div class="list">'+list.map((t,i)=>{
+            const k='tip-'+S.month+'-'+i, on=!!S.done[k];
+            return '<div class="row" data-key="'+k+'"><button class="tick" data-act="tick" data-key="'+k+'" aria-pressed="'+on+'" aria-label="Mark done"><i class="ti ti-check" aria-hidden="true"></i></button>'
+            + '<div class="nm" style="grid-column:2/-1">'+esc(t)+'</div></div>';
+          }).join('')+'</div>'
+        : '<p class="empty">No guidance recorded for this month.</p>')
+  +     '<h2 style="margin-top:1.6rem">Planted <span class="note">'+S.plants.length+' species</span></h2>'
+  +     (S.plants.length ? '<div class="list">'+S.plants.map(sym=>{
+            const p = DATA.plants.find(x=>x.symbol===sym); if(!p) return '';
+            return '<div class="row" data-key="p-'+esc(sym)+'"><span class="code">'+esc(p.symbol)+'</span>'
+            + '<div><div class="nm">'+esc(p.name)+'</div><div class="sci">'+esc(p.sciName)+'</div></div>'
+            + '<div class="act"><button class="btn btn-sm" data-act="unplant" data-sym="'+esc(sym)+'">Remove</button></div></div>';
+          }).join('')+'</div>'
+        : '<div class="empty"><i class="ti ti-seedling" aria-hidden="true"></i><p>Nothing planted yet. Open <b>Plants</b> and add the first row.</p></div>')
+  +   '</section>'
+  +   '<aside>'
+  +     '<div class="panel"><header>Rebate on the table</header><div class="body">'
+  +       (rebateValue() ? '<div class="rebate" style="border:0;padding:0"><div class="amt">'+money(Math.round(rebateValue()))+'</div>'
+          + '<p class="unverified">Estimated from your plot size. Amounts and eligibility change — verify on the program site before counting on it.</p></div>'
+          : '<p style="font-size:0.88rem;color:var(--graphite-2)">Set your state, ZIP and plot size to see what is available.</p>')
+  +     '</div></div>'
+  +     '<div class="panel" style="margin-top:0.9rem"><header>Habitat score</header><div class="body">'
+  +       '<div class="score mono">'+habitatScore()+'</div>'
+  +       '<p style="font-size:0.84rem;color:var(--graphite-2);margin-top:0.3rem">Weighted by what you logged. Bees and butterflies count most.</p>'
+  +     '</div></div>'
+  +   '</aside>'
+  + '</div></div>';
+}
+
+function sunLabel(v){ const o=(DATA.sun||[]).find(s=>s.value===v); return o?o.label:'Sun not set'; }
+
+function viewSetup(){
+  const y = S.yard || {};
+  const states = [...new Set(DATA.rebates.map(r=>r.state))].sort();
+  return '<div class="pad"><h1>Set up your yard</h1>'
+  + '<p class="lede">Location and light decide everything else. Nothing here leaves your browser.</p>'
+  + '<form id="setup" style="max-width:520px;margin-top:1.3rem">'
+  +   '<label class="field"><span>State</span><select name="state" required>'
+  +     '<option value="">Select…</option>'
+  +     states.map(s=>'<option value="'+s+'"'+(y.state===s?' selected':'')+'>'+s+'</option>').join('')
+  +     '<option value="OTHER"'+(y.state==='OTHER'?' selected':'')+'>Somewhere else</option>'
+  +   '</select></label>'
+  +   '<label class="field"><span>City</span><input name="city" value="'+esc(y.city||'')+'" placeholder="Milwaukee"></label>'
+  +   '<label class="field"><span>ZIP</span><input name="zip" value="'+esc(y.zip||'')+'" placeholder="53202" inputmode="numeric"></label>'
+  +   '<label class="field"><span>Plot size you would convert (sq ft)</span><input name="sqft" value="'+esc(y.sqft||'')+'" placeholder="400" inputmode="numeric"></label>'
+  +   '<div class="field"><span>Sun exposure</span><div class="opts" id="sunopts">'
+  +     DATA.sun.map(s=>'<button type="button" class="opt" data-act="sun" data-v="'+s.value+'" aria-pressed="'+(y.sun===s.value)+'"><i class="ti '+s.icon+'" aria-hidden="true"></i>'+esc(s.label)+'</button>').join('')
+  +   '</div></div>'
+  +   '<div class="field"><span>What is this for?</span><div class="opts" id="goalopts">'
+  +     DATA.goals.map(g=>'<button type="button" class="opt" data-act="goal" data-v="'+g.value+'" aria-pressed="'+(((y.goals)||[]).includes(g.value))+'"><i class="ti '+g.icon+'" aria-hidden="true"></i>'+esc(g.label)+'</button>').join('')
+  +   '</div></div>'
+  +   '<button class="btn btn-go" type="submit"><i class="ti ti-check" aria-hidden="true"></i> Save the yard</button>'
+  + '</form></div>';
+}
+
+function viewPlants(){
+  const ranked = rankedPlants();
+  const goals = (S.yard && S.yard.goals) || [];
+  return '<div class="pad">'
+  + '<h1>Plants</h1>'
+  + '<p class="lede">'+ranked.length+' native species. '+(goals.length
+      ? 'Ranked against your goals — change them and the list re-ranks in place.'
+      : 'Set your goals in <b>My yard</b> and this list re-ranks itself.')+'</p>'
+  + '<div class="opts" style="margin:1rem 0 0.4rem">'
+  +   DATA.goals.map(g=>'<button class="opt" data-act="goal-live" data-v="'+g.value+'" aria-pressed="'+goals.includes(g.value)+'"><i class="ti '+g.icon+'" aria-hidden="true"></i>'+esc(g.label)+'</button>').join('')
+  + '</div>'
+  + '<h2 style="margin-top:1.2rem">The list <span class="note">code · species · fit</span></h2>'
+  + '<div class="list" id="plantlist">'
+  + ranked.map(p=>{
+      const planted = S.plants.includes(p.symbol);
+      return '<div class="row" data-key="'+esc(p.symbol)+'">'
+      + '<span class="code">'+esc(p.symbol)+'</span>'
+      + '<div><div class="nm">'+esc(p.name)+'</div><div class="sci">'+esc(p.sciName)+'</div>'
+      +   '<div style="margin-top:0.3rem;display:flex;gap:0.3rem;flex-wrap:wrap">'
+      +   '<span class="chip">'+esc(p.category)+'</span>'
+      +   (p.fit ? '<span class="chip on">fit '+p.fit+'</span>' : '')
+      +   p.wildlifeValue.map(w=>'<span class="chip">'+esc(w)+'</span>').join('')
+      +   '</div></div>'
+      + '<div class="act"><button class="btn btn-sm '+(planted?'btn-hi':'')+'" data-act="plant" data-sym="'+esc(p.symbol)+'">'
+      +   (planted?'<i class="ti ti-check" aria-hidden="true"></i> Planted':'Add')+'</button></div>'
+      + '</div>';
+    }).join('')
+  + '</div></div>';
+}
+
+function viewRebates(){
+  const y = S.yard||{}, ms = matchingRebates(), sqft = parseInt(y.sqft,10)||0;
+  return '<div class="pad"><h1>Rebates</h1>'
+  + '<p class="lede">Cash programmes that pay you to replace lawn. Figures are real but <b>unverified</b> — confirm on the programme site before counting on the money.</p>'
+  + (!y.state ? '<div class="empty"><i class="ti ti-map-pin-off" aria-hidden="true"></i><p>Set your state in <b>My yard</b> to match programmes.</p></div>'
+    : ms.length ? '<div class="cards" style="margin-top:1.2rem">'+ms.map(r=>{
+        const est = sqft && sqft >= r.min_sqft ? Math.min(sqft*r.amount_per_sqft, r.max_amount) : 0;
+        return '<div class="rebate" data-key="'+esc(r.program)+'">'
+        + '<div class="amt">'+(est?money(Math.round(est)):'$'+r.amount_per_sqft+'/sq ft')+'</div>'
+        + '<div class="prog">'+esc(r.program)+'</div>'
+        + '<div class="meta mono" style="font-size:0.74rem;color:var(--graphite-2);margin-top:0.2rem">'+esc(r.city)+', '+esc(r.state)+' · '+esc(r.category)+'</div>'
+        + '<p style="font-size:0.86rem;margin-top:0.5rem">'+esc(r.description)+'</p>'
+        + '<div style="margin-top:0.55rem;display:flex;gap:0.35rem;flex-wrap:wrap">'
+        +   '<span class="chip">min '+r.min_sqft+' sq ft</span><span class="chip">cap '+money(r.max_amount)+'</span>'
+        +   (r.exact?'<span class="chip on">matches your ZIP</span>':'')
+        + '</div>'
+        + '<p class="unverified">Unverified — check current terms at the programme.</p>'
+        + '<a class="btn btn-sm" style="margin-top:0.5rem" href="'+esc(r.url)+'" target="_blank" rel="noopener">Programme site <i class="ti ti-external-link" aria-hidden="true"></i></a>'
+        + '</div>';
+      }).join('')+'</div>'
+    : '<div class="empty"><i class="ti ti-search-off" aria-hidden="true"></i><p>No programmes recorded for '+esc(y.state)+' yet. ReWild covers eight states so far.</p></div>')
+  + '</div>';
+}
+
+function viewWildlife(){
+  return '<div class="pad"><h1>Wildlife log</h1>'
+  + '<p class="lede">The proof mechanism. Log what turns up and the habitat score follows.</p>'
+  + '<div class="split" style="margin-top:1.2rem"><section>'
+  + '<h2>Log a sighting</h2>'
+  + '<div class="opts">'+DATA.wildlife.map(w=>'<button class="opt" data-act="log" data-kind="'+w.value+'"><i class="ti '+w.icon+'" aria-hidden="true" style="color:'+w.color+'"></i>'+esc(w.label)+'</button>').join('')+'</div>'
+  + '<h2 style="margin-top:1.5rem">Recorded <span class="note">'+S.sightings.length+' entries</span></h2>'
+  + (S.sightings.length ? '<div class="list">'+S.sightings.slice(0,40).map(s=>{
+      const w = DATA.wildlife.find(x=>x.value===s.kind)||{label:s.kind,icon:'ti-circle',color:'#888'};
+      return '<div class="sight" data-key="s-'+s.id+'"><span class="dot"><i class="ti '+w.icon+'" style="color:'+w.color+'" aria-hidden="true"></i></span>'
+      + '<div style="flex:1"><b>'+esc(w.label)+'</b><div class="mono" style="font-size:0.74rem;color:var(--graphite-2)">'+esc(new Date(s.date).toLocaleDateString())+'</div></div>'
+      + '<button class="btn btn-sm" data-act="unlog" data-id="'+s.id+'">Remove</button></div>';
+    }).join('')+'</div>'
+    : '<div class="empty"><i class="ti ti-butterfly" aria-hidden="true"></i><p>Nothing logged yet. Tap a species above the moment you see one.</p></div>')
+  + '</section><aside><div class="panel"><header>Habitat score</header><div class="body">'
+  + '<div class="score mono">'+habitatScore()+'</div>'
+  + '<p style="font-size:0.84rem;color:var(--graphite-2);margin-top:0.4rem">Bees and butterflies weigh 3, birds, mammals and amphibians 2, beetles 1.5, spiders 1.</p>'
+  + '</div></div></aside></div></div>';
+}
+
+function viewCalendar(){
+  const b = band((S.yard&&S.yard.state)||'');
+  const t = DATA.months[S.month]||{};
+  const rows = (t.all||[]).map(x=>['All climates',x])
+    .concat((t[b]||[]).map(x=>[b+' climates',x]));
+  return '<div class="pad"><h1>Care calendar</h1>'
+  + '<p class="lede">What to do this month where you actually are. Your band: <b>'+esc(b)+'</b>.</p>'
+  + '<div class="months" style="margin-top:1rem">'
+  + DATA.monthNames.map((m,i)=>'<button class="mo" data-act="month" data-i="'+i+'" aria-pressed="'+(i===S.month)+'">'+esc(m.slice(0,3))+'</button>').join('')
+  + '</div>'
+  + '<h2 style="margin-top:1rem">'+esc(DATA.monthNames[S.month])+' <span class="note">'+rows.length+' tasks</span></h2>'
+  + (rows.length ? '<div class="list">'+rows.map(([scope,text],i)=>{
+      const k='cal-'+S.month+'-'+i, on=!!S.done[k];
+      return '<div class="row" data-key="'+k+'"><button class="tick" data-act="tick" data-key="'+k+'" aria-pressed="'+on+'" aria-label="Mark done"><i class="ti ti-check" aria-hidden="true"></i></button>'
+      + '<div><div class="nm">'+esc(text)+'</div><div class="meta">'+esc(scope)+'</div></div><div></div></div>';
+    }).join('')+'</div>' : '<p class="empty">Nothing recorded for this month.</p>')
+  + '</div>';
+}
+
+function viewMarket(){
+  const g = (k)=>DATA.market.filter(x=>x.group===k);
+  const card = p => '<div class="rebate" data-key="'+esc(p.id)+'">'
+    + '<div style="display:flex;align-items:center;gap:0.5rem"><i class="ti '+esc(p.icon)+'" style="color:'+esc(p.color)+';font-size:20px" aria-hidden="true"></i><b>'+esc(p.name)+'</b></div>'
+    + (p.price?'<div class="amt" style="font-size:1.15rem;margin-top:0.35rem">'+esc(p.price)+'</div>':'')
+    + '<div class="mono" style="font-size:0.74rem;color:var(--graphite-2);margin-top:0.15rem">'+esc(p.sub||(p.city?p.city+', '+p.state:''))+'</div>'
+    + (p.desc?'<p style="font-size:0.86rem;margin-top:0.45rem">'+esc(p.desc)+'</p>':'')
+    + (p.specs?'<div style="margin-top:0.45rem;display:flex;gap:0.3rem;flex-wrap:wrap">'+p.specs.map(s=>'<span class="chip">'+esc(s)+'</span>').join('')+'</div>':'')
+    + '<a class="btn btn-sm" style="margin-top:0.55rem" href="'+esc(p.link||p.url)+'" target="_blank" rel="noopener">Visit <i class="ti ti-external-link" aria-hidden="true"></i></a>'
+    + '</div>';
+  return '<div class="pad"><h1>Marketplace</h1>'
+  + '<p class="lede">Seed, starter kits and native nurseries. ReWild links out; it does not sell.</p>'
+  + '<h2 style="margin-top:1.2rem">Seed</h2><div class="cards">'+g('seed').map(card).join('')+'</div>'
+  + '<h2 style="margin-top:1.5rem">Kits</h2><div class="cards">'+g('kit').map(card).join('')+'</div>'
+  + '<h2 style="margin-top:1.5rem">Nurseries</h2><div class="cards">'+g('nursery').map(card).join('')+'</div>'
+  + '</div>';
+}
+
+/* ── RENDER ───────────────────────────────────────────────────── */
+function render(){
+  const v = S.view;
+  if (v === 'landing') { el('app').innerHTML = viewLanding(); return; }
+  const body =
+      v === 'plants'   ? viewPlants()
+    : v === 'rebates'  ? viewRebates()
+    : v === 'wildlife' ? viewWildlife()
+    : v === 'calendar' ? viewCalendar()
+    : v === 'market'   ? viewMarket()
+    : v === 'setup'    ? viewSetup()
+    : viewYard();
+  el('app').innerHTML = shell(body);
+}
+
+/* ── EVENTS ───────────────────────────────────────────────────── */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-act]'); if (!t) return;
+  const a = t.dataset.act;
+
+  if (a === 'go')       return set({ view: t.dataset.view });
+  if (a === 'demo')     return startDemo();
+  if (a === 'setup')    return set({ view:'setup', demo:false, yard:{} });
+  if (a === 'edit-loc') return set({ view:'setup' });
+  if (a === 'reset')    { localStorage.removeItem(KEY); S = Object.assign({}, BLANK); return render(); }
+  if (a === 'month')    return set({ month: +t.dataset.i });
+
+  if (a === 'tick'){
+    const k = t.dataset.key; S.done[k] = !S.done[k]; save();
+    t.setAttribute('aria-pressed', String(!!S.done[k]));   /* edit in place, no re-render */
+    return;
+  }
+  if (a === 'plant'){
+    const s = t.dataset.sym;
+    S.plants = S.plants.includes(s) ? S.plants.filter(x=>x!==s) : S.plants.concat(s);
+    save(); return render();
+  }
+  if (a === 'unplant'){ S.plants = S.plants.filter(x=>x!==t.dataset.sym); save(); return render(); }
+  if (a === 'log'){
+    S.sightings.unshift({ id: Date.now(), kind: t.dataset.kind, date: new Date().toISOString() });
+    save(); return render();
+  }
+  if (a === 'unlog'){ S.sightings = S.sightings.filter(s=>s.id!==+t.dataset.id); save(); return render(); }
+
+  /* the signature interaction: goals change, the list visibly re-ranks */
+  if (a === 'goal-live'){
+    S.yard = S.yard || {}; const g = S.yard.goals || [];
+    S.yard.goals = g.includes(t.dataset.v) ? g.filter(x=>x!==t.dataset.v) : g.concat(t.dataset.v);
+    save();
+    return reRank(el('plantlist'), render);
+  }
+  if (a === 'sun'){
+    document.querySelectorAll('#sunopts .opt').forEach(b=>b.setAttribute('aria-pressed','false'));
+    t.setAttribute('aria-pressed','true'); t.dataset.picked = '1';
+    return;
+  }
+  if (a === 'goal'){
+    t.setAttribute('aria-pressed', t.getAttribute('aria-pressed')==='true' ? 'false' : 'true');
+    return;
+  }
+});
+
+document.addEventListener('submit', e => {
+  if (e.target.id !== 'setup') return;
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const sun = document.querySelector('#sunopts .opt[aria-pressed="true"]');
+  const goals = [...document.querySelectorAll('#goalopts .opt[aria-pressed="true"]')].map(b=>b.dataset.v);
+  set({
+    view:'yard', demo:false,
+    yard:{ state:f.get('state'), city:f.get('city'), zip:f.get('zip'), sqft:f.get('sqft'),
+           sun: sun?sun.dataset.v:'', goals, setupDone:true }
+  });
+});
+
+/* ── DEMO YARD ────────────────────────────────────────────────── */
+function startDemo(){
+  const now = Date.now();
+  set({
+    view:'yard', demo:true,
+    yard:{ state:'WI', city:'Milwaukee', zip:'53202', sqft:'600', sun:'full_sun',
+           goals:['pollinators','birds'], setupDone:true },
+    plants:['ASCA4','ECPU','RUHI2','MOFI','SCSC','ASNO'],
+    sightings:[
+      { id:now-1, kind:'butterfly', date:new Date(now-86400000*2).toISOString() },
+      { id:now-2, kind:'bee',       date:new Date(now-86400000*3).toISOString() },
+      { id:now-3, kind:'bird',      date:new Date(now-86400000*6).toISOString() },
+      { id:now-4, kind:'bee',       date:new Date(now-86400000*9).toISOString() },
+      { id:now-5, kind:'beetle',    date:new Date(now-86400000*12).toISOString() }
+    ],
+    done:{}
+  });
+}
+
+render();
+</script>
+</body>
+</html>

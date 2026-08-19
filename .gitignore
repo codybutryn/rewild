@@ -1,0 +1,37 @@
+# ── Superseded builds ──────────────────────────────────────────────
+# The two 6-29 builds are the pre-rewrite app: a 220 KB minified React
+# bundle with six vanilla modules layered on top of it. They are kept on
+# disk as history but deliberately NOT published, because both embed a
+# live Supabase project URL and anon key. Nothing in the current app
+# needs them.
+ReWild Build 6-29.html
+ReWild Build 6-29 with Supabase api.html
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Node — only ever local tooling, never shipped
+node_modules/
+npm-debug.log*
+
+# impeccable-ignore-start
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/*.png
+.impeccable/live/server.json
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/cache/
+# impeccable-ignore-end
+
+# Round artifacts: regenerable, large, not part of the app
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/direction-payload.json
+.impeccable/questions/
+.claude/settings.local.json
