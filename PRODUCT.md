@@ -69,7 +69,8 @@ Confirmed and shipping:
   temperate / warm).
 - **Marketplace** — seed products, starter kits, and native nurseries, linking out to
   the sellers.
-- **Yard map designer** — a drag-and-place plan of the plot.
+- **Yard map designer** — a drag-and-place plan of the plot. *Not in the current
+  build; it existed in the superseded React build and has not been reimplemented.*
 
 Constraints:
 
