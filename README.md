@@ -28,6 +28,17 @@ eligibility change, and this app is not a party to any of them. Every figure in
 the UI says so on its own row. Confirm on the program's site before counting on
 the money.
 
+## Photographs
+
+Each of the 17 species carries a photograph from Wikimedia Commons, bundled in
+`assets/` rather than hotlinked — the previous build shipped with 17 dead image
+URLs, and linking to files that can be renamed upstream re-earns that failure.
+Every licence was verified before download and every photo is credited on its
+plant sheet; the full list is in [CREDITS.md](CREDITS.md).
+
+You can also photograph your own plants and sightings. Those images are resized
+and stored in your browser only — never uploaded, never sent anywhere.
+
 ## Design
 
 The interface is a field notebook: waterproof grid stock, a high-visibility

@@ -35,3 +35,6 @@ npm-debug.log*
 .impeccable/direction-payload.json
 .impeccable/questions/
 .claude/settings.local.json
+
+# Photo fetch log — provenance record, regenerable
+.impeccable/photo-fetch.json
