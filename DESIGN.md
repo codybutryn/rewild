@@ -16,6 +16,10 @@ colors:
   stamp: "#5B3A8C"
   survey-deep: "#C44A14"
   stamp-wash: "rgba(255,255,255,0.42)"
+  p-page: "#FFFFFF"
+  p-ink: "#000000"
+  p-ink-2: "#444444"
+  p-rule: "#C9C9C9"
 typography:
   display:
     fontFamily: "Archivo, system-ui, sans-serif"
@@ -245,7 +249,7 @@ The recurring silhouettes are the ruled row (78px code column, name/species stac
 
 **The Drawn Plate Rule.** Species imagery is authored SVG, not photography. Four line plates — Grass, Forb/herb, Shrub, Cactus — are drawn by growth form at 58×44 in `currentColor` on the shade ground, keyed off the record's category with Forb/herb as fallback. This is not a placeholder: a field guide draws its plates. It became the answer after all 17 inherited image URLs were found dead (every one 400s at Wikimedia), and it is the world's own solution, so future imagery extends the plate set rather than reverting to photos.
 
-**The Icon Rule.** Icons are the Tabler webfont at its single outline weight, loaded from CDN: 23 distinct glyphs across the app, 9 written directly into markup and the rest supplied by data records for wildlife groups, goals, sun options and marketplace entries. They appear in tick boxes, option toggles, buttons, the locality stamp, empty states and the wildlife log. They are permitted because Tabler is a real drawn library at one consistent stroke, which is what the craft floor asks for — the refusal is Unicode glyphs and emoji standing in for an icon system, not a drawn icon set. Two constraints bind them here: icons take world ink only (`--graphite`, `--hivis`, `--survey`, `--stamp`) and never a per-item colour, which is the rule that removed ~15 inherited Material-palette hexes; and the CDN URL needs its `/dist/` path segment, without which the stylesheet 404s and every icon silently vanishes — the exact bug the superseded build shipped with. Icons label controls; species imagery is the plate set above, never an icon.
+**The Icon Rule.** Icons are the Tabler webfont at its single outline weight, loaded from CDN: 24 distinct glyphs across the app, 10 written directly into markup and the rest supplied by data records for wildlife groups, goals, sun options and marketplace entries. They appear in tick boxes, option toggles, buttons, the locality stamp, empty states and the wildlife log. They are permitted because Tabler is a real drawn library at one consistent stroke, which is what the craft floor asks for — the refusal is Unicode glyphs and emoji standing in for an icon system, not a drawn icon set. Two constraints bind them here: icons take world ink only (`--graphite`, `--hivis`, `--survey`, `--stamp`) and never a per-item colour, which is the rule that removed ~15 inherited Material-palette hexes; and the CDN URL needs its `/dist/` path segment, without which the stylesheet 404s and every icon silently vanishes — the exact bug the superseded build shipped with. Icons label controls; species imagery is the plate set above, never an icon.
 
 ## Components
 
@@ -292,6 +296,16 @@ The unit of the whole product. `78px / 1fr / auto`: a mono record code in stamp 
 ### Browser surfaces
 The palette continues past the document. Selection is hi-vis on graphite, the focus ring is 2.5px stamp violet at 2px offset, and the scrollbar is a heavy-rule thumb with a 3px stock inset on a stock track. Themed browser chrome is part of the world, not an extra.
 
+### The Tally Rule
+Counts that accumulate render as real tally strokes, not as bars or dots: four uprights and a diagonal through each group of five, drawn as SVG at the graphite stroke. The THESIS promises a *tallied* list, and a generic chart would be the world breaking its own word. The wildlife run uses them for twelve months of sightings; any future count of observations uses them too.
+
+### The Tear-Out
+A field book you cannot carry is a worse field book, so the app prints. `printSheet()` renders a screen-hidden, print-only sheet carrying four sections — a plant list with blank QTY columns for the nursery counter, the month's care schedule as real checkboxes, a rebate worksheet with every estimate labeled unverified, and the paperwork checklist. It opens with a serialized header (SHEET 1 OF 1 · REC. BY ____ · date) and closes on a printed form number, both devices a real field book carries.
+
+The printed sheet is **its own medium**: ink on white paper, not the screen palette on stock. It uses a separate four-step ink scale (`{colors.p-page}`, `{colors.p-ink}`, `{colors.p-ink-2}`, `{colors.p-rule}`) and point sizes rather than the rem ramp. Do not "fix" the print block to use screen tokens; the divergence is deliberate.
+
+**The Paperwork Is Generic Rule.** The before-you-dig checklist states requirements common across lawn-replacement programs and says so on the sheet. Writing a specific program's rules would be exactly the fabrication PRODUCT.md forbids, since none of them have been verified.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -317,4 +331,6 @@ The palette continues past the document. Selection is hi-vis on graphite, the fo
 - **Don't** substitute photography for the drawn plates.
 
 ### Open, not shipped
-Named in the finish review and deliberately not built: real tally strokes, a serialized sheet header (SHEET __ OF __, REC. BY), dotted leader lines, a perforation edge, a carbon-duplicate tint, and a printed form number in the footer. These are candidate extensions of the world, not current rules — nothing in the build implements them.
+Named in the finish review and still not built: dotted leader lines, a perforation edge, and a carbon-duplicate tint. These are candidate extensions of the world, not current rules — nothing in the build implements them.
+
+Three items that were on this list now ship, and moved out of it when the tear-out was added: real tally strokes (see The Tally Rule), the serialized sheet header, and the printed form number, all three on the printed sheet.

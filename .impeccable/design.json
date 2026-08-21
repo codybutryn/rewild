@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-08-19T12:00:00Z",
+  "generatedAt": "2026-08-21T00:00:00Z",
   "title": "Design System: ReWild — The Field List",
   "extensions": {
     "colorMeta": {
@@ -68,7 +68,8 @@
         "role": "secondary",
         "displayName": "Surveyor Ink",
         "canonical": "#B03B0F",
-        "tonalRamp": ["#2B0F03", "#4A1B06", "#6B270A", "#8E340E", "#B03B0F", "#E2571E", "#F0855A", "#F8BFA5"]
+        "tonalRamp": ["#2B0F03", "#4A1B06", "#6B270A", "#8E340E", "#B03B0F", "#E2571E", "#F0855A", "#F8BFA5"],
+        "purpose": "Every orange below large size: the unverified line under a rebate figure, the dashed rule above it, and both warn chips — 'outside your band' and 'wants full sun or part shade'."
       },
       "stamp": {
         "role": "tertiary",
@@ -90,15 +91,69 @@
         "translucent": true,
         "tonalRamp": ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.15)", "rgba(255,255,255,0.24)", "rgba(255,255,255,0.33)", "rgba(255,255,255,0.42)", "rgba(255,255,255,0.58)", "rgba(255,255,255,0.75)", "rgba(255,255,255,0.92)"],
         "purpose": "The translucent white the locality stamp sits on — paper showing through rubber. Only ever over hi-vis; the ramp is alpha, not lightness, because the ground must read through it."
+      },
+      "p-page": {
+        "role": "neutral",
+        "displayName": "Print Page",
+        "canonical": "#FFFFFF",
+        "printOnly": true,
+        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#555555", "#7A7A7A", "#A3A3A3", "#C9C9C9", "#FFFFFF"],
+        "purpose": "The paper the tear-out prints on. Set with !important on body inside @media print together with background-image:none, because the 22px ruling is a screen device and must not be laid down in toner. No screen surface may take it."
+      },
+      "p-ink": {
+        "role": "neutral",
+        "displayName": "Print Ink",
+        "canonical": "#000000",
+        "printOnly": true,
+        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#555555", "#7A7A7A", "#A3A3A3", "#C9C9C9", "#FFFFFF"],
+        "purpose": "All primary print text, section underlines, table-head rules, the pbox checkbox stroke and the dashed warn rules on the sheet."
+      },
+      "p-ink-2": {
+        "role": "neutral",
+        "displayName": "Print Ink Secondary",
+        "canonical": "#444444",
+        "printOnly": true,
+        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#444444", "#7A7A7A", "#A3A3A3", "#C9C9C9", "#FFFFFF"],
+        "purpose": "The sheet's meta hand: the serialized header line, section counts, scientific names, program URLs, empty-state notes and the form-number footer."
+      },
+      "p-rule": {
+        "role": "neutral",
+        "displayName": "Print Rule",
+        "canonical": "#C9C9C9",
+        "printOnly": true,
+        "tonalRamp": ["#000000", "#1A1A1A", "#333333", "#555555", "#7A7A7A", "#A3A3A3", "#C9C9C9", "#FFFFFF"],
+        "purpose": "The light divider on the sheet: 1px solid between table rows, 1px dotted between checklist items."
       }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "The landing headline only, capped at 16ch. The only place Archivo 800 gets real size." },
       "headline": { "displayName": "Headline", "purpose": "The heading at the top of every in-app view; clamps at 2.1rem." },
-      "title": { "displayName": "Title", "purpose": "Section heads, uppercase, underlined by a 2px graphite rule." },
+      "title": { "displayName": "Title", "purpose": "Section heads, uppercase, underlined by a 2px graphite rule, carrying an optional mono note pushed to the right end of that rule — 'typical requirements · confirm with your program' over the paperwork checklist." },
       "body": { "displayName": "Body", "purpose": "Running copy; ledes cap at 66ch in secondary pencil." },
-      "label": { "displayName": "Label", "purpose": "Mono uppercase captions: tabs, buttons, field captions, panel headers, chips." },
+      "label": { "displayName": "Label", "purpose": "Mono uppercase captions: tabs, buttons, field captions, panel headers, chips, and the month labels down the run." },
       "figure": { "displayName": "Figure", "purpose": "Mono tabular running totals: tally band, habitat score, rebate amount." }
+    },
+    "print": {
+      "medium": "The tear-out is its own medium and does not inherit the screen ramp. `.printonly` is display:none on screen and display:block inside @media print, where the app chrome (demo bar, locality band, tally band, index tabs, main, footer) goes display:none !important.",
+      "page": "@page margin 14mm; body 10pt.",
+      "inkScale": ["{colors.p-page}", "{colors.p-ink}", "{colors.p-ink-2}", "{colors.p-rule}"],
+      "typeScale": [
+        { "name": "section head", "value": "10pt / 800 / +0.08em uppercase over a 1px p-ink underline" },
+        { "name": "section note", "value": "mono 8.5pt / 400 in p-ink-2, baseline-aligned at the right end of the head" },
+        { "name": "table head", "value": "mono 8pt / 700 / +0.08em uppercase over a 1px p-ink underline" },
+        { "name": "table cell", "value": "9.5pt over a 1px p-rule underline" },
+        { "name": "checklist item", "value": "9.5pt / 1.45 over a 1px dotted p-rule underline" },
+        { "name": "sub-line (program URL)", "value": "mono 7.5pt in p-ink-2" },
+        { "name": "warn line", "value": "mono 8pt in p-ink over a 1px dashed p-ink rule" },
+        { "name": "serial header / form footer", "value": "mono 8.5pt and 7.5pt in p-ink-2" }
+      ],
+      "checkbox": "`.pbox` — a 10pt square with a 1.2pt p-ink border and no fill. The print counterpart of the 23px screen tick box; both are squares you mark.",
+      "sections": ["Plant list, with a blank QTY column for the nursery counter", "Care schedule for the month, as pbox checkboxes", "Rebate worksheet, per-program estimate with an unverified warn line", "Before you dig, the paperwork checklist"],
+      "serialization": "Header reads SHEET 1 OF 1 · REC. BY ____________ · date. Footer reads FORM RW-1 · rewild · every figure unverified · state lives only in the browser it was entered in.",
+      "notes": [
+        "Point sizes, not the rem ramp. Do not 'fix' the print block to screen tokens; the divergence is deliberate and DESIGN.md records it.",
+        "The four p-* tokens exist only inside @media print. No screen surface inherits them; the screen palette is unchanged at 14."
+      ]
     },
     "icons": {
       "library": "Tabler Icons (webfont)",
@@ -108,10 +163,10 @@
       "sizes": ["15px inside the tick box", "17px in option toggles", "34px in the empty state"],
       "permittedInks": ["{colors.graphite}", "{colors.hivis}", "{colors.survey}", "{colors.stamp}"],
       "notes": [
-        "Icons take world ink only and never a per-item colour. This is the rule that removed ~15 inherited Material-palette hexes; the last survivor, a dead color:'#888' fallback in the wildlife lookup, is gone — the fallback record is now {label, icon:'ti-circle'}.",
+        "Icons take world ink only and never a per-item colour. This is the rule that removed ~15 inherited Material-palette hexes; the wildlife lookup fallback is {label, icon:'ti-circle'} with no colour field.",
         "The CDN URL requires its /dist/ path segment. Without it the stylesheet 404s and every icon silently disappears — the exact bug the superseded build shipped with.",
         "Icons label controls. Species imagery is always the drawn plate set, never an icon.",
-        "Measured in the shipped source: 23 distinct ti-* classes — 9 written directly into markup, 15 supplied by data records for wildlife groups, goals, sun options and marketplace entries, with ti-butterfly appearing in both sets. Agrees with DESIGN.md.",
+        "Measured in the shipped source: 24 distinct ti-* classes — 10 written directly into markup and 15 supplied by data records for wildlife groups, goals, sun options and marketplace entries, with ti-butterfly in both sets and ti-printer new for the tear-out button. Agrees with the Icon Rule as recorded in DESIGN.md.",
         "Panel snippets below inline the same glyphs as SVG at the same stroke weight, because the sidecar renders into a shadow DOM with no webfont loaded."
       ]
     },
@@ -120,7 +175,7 @@
       { "name": "ease", "value": "cubic-bezier(0.23, 1, 0.32, 1)", "purpose": "The only easing curve in the build. Used for every transition." },
       { "name": "micro-press", "value": "110ms", "purpose": "Scale press feedback on buttons, tabs and the tick box (0.97, tick 0.92)." },
       { "name": "micro-state", "value": "120-140ms", "purpose": "Colour changes on rows, chips, options, month cells and the tick fill." },
-      { "name": "rerank-flip", "value": "420ms", "purpose": "The one authored moment: FLIP translate on plant rows when a goal changes. Double-guarded by CSS prefers-reduced-motion and a JS matchMedia early return." },
+      { "name": "rerank-flip", "value": "420ms", "purpose": "The one authored moment: FLIP translate on plant rows when a goal changes. Double-guarded by CSS prefers-reduced-motion and a JS matchMedia early return. Light-aware ranking re-sorts through this same moment and added no second one." },
       { "name": "grid-pitch", "value": "22px", "purpose": "Not motion, but the spatial rhythm every measure answers to." }
     ],
     "breakpoints": [
@@ -148,6 +203,14 @@
       "css": ".ds-btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1rem;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:transform 110ms cubic-bezier(0.23,1,0.32,1),background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-btn-hi{background:#F2C300} .ds-btn-hi:hover{background:#C79E00} .ds-btn-hi:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-btn-hi:active{transform:scale(0.97)}"
     },
     {
+      "name": "Small Button (Tear Out)",
+      "kind": "button",
+      "refersTo": "button-sm",
+      "description": "The inline row-scale button: 2px border, 0.7rem label. In the locality band it is the tear-out control that calls window.print() via data-act=\"tear\".",
+      "html": "<button class=\"ds-btn ds-btn-sm\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2\"/><path d=\"M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4\"/><path d=\"M7 13m0 2a2 2 0 0 1 2 -2h6a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-6a2 2 0 0 1 -2 -2z\"/></svg>Tear out</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'Azeret Mono',ui-monospace,monospace;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:transform 110ms cubic-bezier(0.23,1,0.32,1),background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-btn .ds-i{width:1em;height:1em;flex:none} .ds-btn-sm{font-size:0.7rem;padding:0.34rem 0.6rem;border-width:2px} .ds-btn-sm:hover{background:#DDE3D8} .ds-btn-sm:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-btn-sm:active{transform:scale(0.97)}"
+    },
+    {
       "name": "Ruled Blank",
       "kind": "input",
       "refersTo": "input-blank",
@@ -167,8 +230,8 @@
       "name": "Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "Mono tag in three states: neutral, logged (hi-vis), and out-of-band warning (surveyor ink).",
-      "html": "<span class=\"ds-chip\">Perennial</span> <span class=\"ds-chip ds-chip-on\">Logged</span> <span class=\"ds-chip ds-chip-warn\">outside your band</span>",
+      "description": "Mono tag in three states: neutral, logged (hi-vis), and constraint warning (surveyor ink). The build ships two warn chips — the species is outside the yard's climate band, or it wants a light exposure the yard does not have. A row that misses a constraint names which one.",
+      "html": "<span class=\"ds-chip\">Perennial</span> <span class=\"ds-chip ds-chip-on\">matches your ZIP</span> <span class=\"ds-chip ds-chip-warn\">outside your band</span> <span class=\"ds-chip ds-chip-warn\">wants full sun or part shade</span>",
       "css": ".ds-chip{display:inline-flex;align-items:center;gap:0.3rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid #7E8F73;color:#4A544C;background:transparent;border-radius:0;white-space:nowrap} .ds-chip-on{background:#F2C300;border-color:#1F2420;color:#1F2420;font-weight:700} .ds-chip-warn{border-color:#B03B0F;color:#B03B0F}"
     },
     {
@@ -180,18 +243,26 @@
       "css": ".ds-tallies{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #1F2420;background:#F7F8F5;color:#1F2420} .ds-tally{padding:0.85rem 0.9rem;border-right:1px solid #B9C4B4} .ds-tally:last-child{border-right:0} .ds-tally b{display:block;font-family:'Azeret Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);line-height:1;letter-spacing:-0.03em} .ds-tally small{display:block;font-family:'Archivo',system-ui,sans-serif;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#4A544C;margin-top:0.34rem} .ds-lit b{color:#E2571E} @media (max-width:720px){.ds-tallies{grid-template-columns:1fr 1fr}.ds-tally:nth-child(-n+2){border-bottom:1px solid #B9C4B4}.ds-tally:nth-child(2n){border-right:0}}"
     },
     {
+      "name": "The Run (Tally Strokes)",
+      "kind": "custom",
+      "refersTo": "run",
+      "description": "Twelve months of sightings drawn as real tally strokes — four uprights and a diagonal through each group of five, as SVG at a 2px graphite stroke. Rows are 38px month label / marks / mono count, divided on the 1px rule; the current month takes a hi-vis ground and its label darkens to graphite. This is The Tally Rule made visible.",
+      "html": "<div class=\"ds-panel\"><header>The run — last 12 months</header><div class=\"ds-panel-body\"><div class=\"ds-run\"><div class=\"ds-run-row\"><span class=\"ds-mo\">Jun</span><span class=\"ds-marks\"><svg class=\"ds-tly\" viewBox=\"0 0 26 20\" aria-hidden=\"true\"><path d=\"M3 3v14M8 3v14M13 3v14M18 3v14M1 16L21 4\"/></svg><svg class=\"ds-tly\" viewBox=\"0 0 26 20\" aria-hidden=\"true\" style=\"width:14px\"><path d=\"M3 3v14M8 3v14\"/></svg></span><span class=\"ds-n\">7</span></div><div class=\"ds-run-row\"><span class=\"ds-mo\">Jul</span><span class=\"ds-marks\"><svg class=\"ds-tly\" viewBox=\"0 0 26 20\" aria-hidden=\"true\" style=\"width:19px\"><path d=\"M3 3v14M8 3v14M13 3v14\"/></svg></span><span class=\"ds-n\">3</span></div><div class=\"ds-run-row ds-now\"><span class=\"ds-mo\">Aug</span><span class=\"ds-marks\"><svg class=\"ds-tly\" viewBox=\"0 0 26 20\" aria-hidden=\"true\"><path d=\"M3 3v14M8 3v14M13 3v14M18 3v14M1 16L21 4\"/></svg></span><span class=\"ds-n\">5</span></div></div></div></div>",
+      "css": ".ds-panel{border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0} .ds-panel > header{background:#1F2420;color:#F7F8F5;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 0.7rem} .ds-panel-body{padding:0.8rem 0.85rem} .ds-run{border-top:1px solid #B9C4B4} .ds-run-row{display:grid;grid-template-columns:38px 1fr auto;gap:0.6rem;align-items:center;padding:0.3rem 0;border-bottom:1px solid #B9C4B4} .ds-run-row.ds-now{background:#F2C300} .ds-mo{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4A544C} .ds-run-row.ds-now .ds-mo{color:#1F2420} .ds-marks{display:flex;gap:4px;flex-wrap:wrap;min-height:20px} .ds-tly{height:20px;width:26px;flex:none;fill:none;stroke:#1F2420;stroke-width:2;stroke-linecap:round} .ds-n{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-variant-numeric:tabular-nums;color:#4A544C}"
+    },
+    {
       "name": "Coded Row with Plate",
       "kind": "card",
       "refersTo": "row",
-      "description": "The unit of the product: mono record code in stamp violet, a drawn growth-form plate, common and scientific name, and a tick box whose check fades in when logged.",
-      "html": "<div class=\"ds-list\"><div class=\"ds-row\"><span class=\"ds-code\">ASTU</span><span class=\"ds-plate\"><svg viewBox=\"0 0 58 44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M29 40 V17\"/><circle cx=\"29\" cy=\"12\" r=\"5\"/><path d=\"M29 26 C24 26 21 23 21 19 M29 30 C34 30 37 27 37 23\"/></svg></span><div><div class=\"ds-nm\">Sky Blue Aster</div><div class=\"ds-sci\">Symphyotrichum oolentangiense</div></div><div class=\"ds-act\"><button class=\"ds-tick\" aria-pressed=\"true\" aria-label=\"Logged\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5l10 -10\"/></svg></button></div></div></div>",
-      "css": ".ds-list{border-top:1px solid #B9C4B4;background:#F7F8F5;color:#1F2420} .ds-row{display:grid;grid-template-columns:70px 58px 1fr auto;gap:0.9rem;align-items:center;padding:0.62rem 0.4rem;border-bottom:1px solid #B9C4B4;transition:background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-row:hover{background:#DDE3D8} .ds-code{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;color:#5B3A8C;letter-spacing:0.04em} .ds-nm{font-family:'Archivo',system-ui,sans-serif;font-weight:600} .ds-sci{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;color:#4A544C;font-style:italic} .ds-plate{width:58px;height:44px;flex:none;display:block;border:1.5px solid #1F2420;background:#DDE3D8;color:#1F2420} .ds-plate svg{width:100%;height:100%;display:block} .ds-act{display:flex;gap:0.4rem;align-items:center} .ds-tick{width:23px;height:23px;display:grid;place-items:center;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:background-color 120ms cubic-bezier(0.23,1,0.32,1),transform 110ms cubic-bezier(0.23,1,0.32,1)} .ds-tick .ds-i{width:0.72rem;height:0.72rem;opacity:0;transition:opacity 120ms cubic-bezier(0.23,1,0.32,1)} .ds-tick[aria-pressed=\"true\"]{background:#F2C300} .ds-tick[aria-pressed=\"true\"] .ds-i{opacity:1} .ds-tick:active{transform:scale(0.92)} .ds-tick:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
+      "description": "The unit of the product: mono record code in stamp violet, a drawn growth-form plate, common and scientific name, constraint chips, and a tick box whose check fades in when logged. The same .row / .tick pair carries the paperwork checklist, where the code column is dropped and the item text spans to the end at weight 400.",
+      "html": "<div class=\"ds-list\"><div class=\"ds-row\"><span class=\"ds-code\">ASTU</span><span class=\"ds-plate\"><svg viewBox=\"0 0 58 44\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M29 40 V17\"/><circle cx=\"29\" cy=\"12\" r=\"5\"/><path d=\"M29 26 C24 26 21 23 21 19 M29 30 C34 30 37 27 37 23\"/></svg></span><div><div class=\"ds-nm\">Sky Blue Aster <span class=\"ds-chip ds-chip-warn\">wants full sun or part shade</span></div><div class=\"ds-sci\">Symphyotrichum oolentangiense</div></div><div class=\"ds-act\"><button class=\"ds-tick\" aria-pressed=\"true\" aria-label=\"Logged\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12l5 5l10 -10\"/></svg></button></div></div></div>",
+      "css": ".ds-list{border-top:1px solid #B9C4B4;background:#F7F8F5;color:#1F2420} .ds-row{display:grid;grid-template-columns:70px 58px 1fr auto;gap:0.9rem;align-items:center;padding:0.62rem 0.4rem;border-bottom:1px solid #B9C4B4;transition:background-color 140ms cubic-bezier(0.23,1,0.32,1)} .ds-row:hover{background:#DDE3D8} .ds-code{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;color:#5B3A8C;letter-spacing:0.04em} .ds-nm{font-family:'Archivo',system-ui,sans-serif;font-weight:600} .ds-sci{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;color:#4A544C;font-style:italic} .ds-chip{display:inline-flex;align-items:center;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.05em;padding:0.16rem 0.42rem;border:1.5px solid #7E8F73;color:#4A544C;white-space:nowrap} .ds-chip-warn{border-color:#B03B0F;color:#B03B0F} .ds-plate{width:58px;height:44px;flex:none;display:block;border:1.5px solid #1F2420;background:#DDE3D8;color:#1F2420} .ds-plate svg{width:100%;height:100%;display:block} .ds-act{display:flex;gap:0.4rem;align-items:center} .ds-tick{width:23px;height:23px;display:grid;place-items:center;border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0;cursor:pointer;transition:background-color 120ms cubic-bezier(0.23,1,0.32,1),transform 110ms cubic-bezier(0.23,1,0.32,1)} .ds-tick .ds-i{width:0.72rem;height:0.72rem;opacity:0;transition:opacity 120ms cubic-bezier(0.23,1,0.32,1)} .ds-tick[aria-pressed=\"true\"]{background:#F2C300} .ds-tick[aria-pressed=\"true\"] .ds-i{opacity:1} .ds-tick:active{transform:scale(0.92)} .ds-tick:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
     },
     {
       "name": "Locality Band",
       "kind": "nav",
       "refersTo": "locality-band",
-      "description": "The hi-vis cover strip. Brand lockup left, rotated violet locality stamp right — the one control whose value propagates through the record. The pin takes stamp ink via currentColor.",
+      "description": "The hi-vis cover strip. Brand lockup left, rotated violet locality stamp right — the one control whose value propagates through the record — and the tear-out button alongside it. The pin takes stamp ink via currentColor.",
       "html": "<div class=\"ds-locality\"><div class=\"ds-loc-in\"><div class=\"ds-brand\">ReWild <span>Field List</span></div><div class=\"ds-stamp\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"/><path d=\"M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z\"/></svg>Milwaukee, WI · 53202 · COOL <button>change</button></div></div></div>",
       "css": ".ds-locality{background:#F2C300;border-bottom:3px solid #1F2420;color:#1F2420} .ds-loc-in{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding:0.75rem 1rem;max-width:1080px;margin:0 auto} .ds-brand{display:flex;align-items:baseline;gap:0.5rem;font-family:'Archivo',system-ui,sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:-0.02em} .ds-brand span{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75} .ds-stamp{margin-left:auto;display:flex;align-items:center;gap:0.5rem;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#5B3A8C;border:2.5px solid #5B3A8C;padding:0.3rem 0.62rem;background:var(--stamp-wash,rgba(255,255,255,0.42));transform:rotate(-1.2deg)} .ds-stamp .ds-i{width:0.72rem;height:0.72rem;flex:none} .ds-stamp button{color:inherit;font:inherit;border:0;background:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px} .ds-stamp button:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px}"
     },
@@ -199,17 +270,25 @@
       "name": "Panel",
       "kind": "card",
       "refersTo": "panel",
-      "description": "A boxed section of the sheet with an inverted graphite header bar. No shadow, no radius.",
-      "html": "<div class=\"ds-panel\"><header>Rebate estimate</header><div class=\"ds-panel-body\"><div class=\"ds-amt\">$1,200</div><p class=\"ds-prog\">400 sq ft at $3.00/sq ft</p><p class=\"ds-unverified\">ReWild&rsquo;s estimate from your plot size, not an offer. Amounts and eligibility change — verify on the program site.</p></div></div>",
+      "description": "A boxed section of the sheet with an inverted graphite header bar. No shadow, no radius. Carries the rebate estimate, the habitat score and the run.",
+      "html": "<div class=\"ds-panel\"><header>Rebate estimate</header><div class=\"ds-panel-body\"><div class=\"ds-amt\">$1,200</div><p class=\"ds-prog\">400 sq ft at $3.00/sq ft</p><p class=\"ds-unverified\">Unverified — check current terms at the program.</p></div></div>",
       "css": ".ds-panel{border:2.5px solid #1F2420;background:#F7F8F5;color:#1F2420;border-radius:0} .ds-panel > header{background:#1F2420;color:#F7F8F5;font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 0.7rem} .ds-panel-body{padding:0.8rem 0.85rem;font-family:'Archivo',system-ui,sans-serif} .ds-amt{font-family:'Azeret Mono',ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:700;font-size:clamp(1.35rem,3.4vw,2rem);letter-spacing:-0.03em;line-height:1} .ds-prog{font-weight:700;margin:0.2rem 0 0} .ds-unverified{font-family:'Azeret Mono',ui-monospace,monospace;font-size:0.72rem;color:#B03B0F;border-top:1px dashed #B03B0F;margin:0.55rem 0 0;padding-top:0.4rem}"
     },
     {
       "name": "Option Toggle",
       "kind": "chip",
       "refersTo": "option",
-      "description": "A multi-select goal or exposure toggle. Heavy-rule box at rest; graphite box on hi-vis when pressed. Icon at 17px in world ink.",
-      "html": "<div class=\"ds-opts\"><button class=\"ds-opt\" aria-pressed=\"true\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 6v14\"/><path d=\"M12 8l-3.5 -3.5a3.5 3.5 0 0 0 -5 5l4.5 4.5\"/><path d=\"M12 8l3.5 -3.5a3.5 3.5 0 0 1 5 5l-4.5 4.5\"/><path d=\"M8 14a4 4 0 0 0 4 6a4 4 0 0 0 4 -6\"/></svg>Pollinators</button><button class=\"ds-opt\" aria-pressed=\"false\">Birds</button><button class=\"ds-opt\" aria-pressed=\"false\">Low water</button></div>",
+      "description": "A multi-select goal or single-select sun exposure toggle. Heavy-rule box at rest; graphite box on hi-vis at weight 600 when pressed, in 130ms. Icon at 17px in world ink. The sun toggle now drives ranking, so it no longer disclaims itself.",
+      "html": "<div class=\"ds-opts\"><button class=\"ds-opt\" aria-pressed=\"true\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"/><path d=\"M3 12h1M12 3v1M20 12h1M12 20v1M5.6 5.6l0.7 0.7M18.4 5.6l-0.7 0.7M17.7 17.7l0.7 0.7M6.3 17.7l-0.7 0.7\"/></svg>Full sun</button><button class=\"ds-opt\" aria-pressed=\"false\">Part shade</button><button class=\"ds-opt\" aria-pressed=\"false\">Full shade</button></div>",
       "css": ".ds-opts{display:flex;gap:0.5rem;flex-wrap:wrap} .ds-opt{display:flex;align-items:center;gap:0.45rem;font-family:'Archivo',system-ui,sans-serif;font-size:1rem;border:2px solid #7E8F73;background:transparent;color:#1F2420;padding:0.45rem 0.7rem;border-radius:0;cursor:pointer;transition:background-color 130ms cubic-bezier(0.23,1,0.32,1),border-color 130ms cubic-bezier(0.23,1,0.32,1)} .ds-opt .ds-i{width:1em;height:1em;flex:none} .ds-opt:hover{background:#DDE3D8} .ds-opt:focus-visible{outline:2.5px solid #5B3A8C;outline-offset:2px} .ds-opt[aria-pressed=\"true\"]{border-color:#1F2420;background:#F2C300;font-weight:600}"
+    },
+    {
+      "name": "Tear-Out Sheet",
+      "kind": "custom",
+      "refersTo": "printonly",
+      "description": "The print-only sheet: display:none on screen, display:block inside @media print. Its own medium — the four-step print ink scale on white paper at point sizes, not the screen ramp. Serialized header, four sections, printed form number. Rendered here at literal print values so the panel can show what comes out of the printer.",
+      "html": "<div class=\"ds-sheet\"><header class=\"ds-p-head\"><div><b>ReWild</b> field list</div><div class=\"ds-p-loc\">Milwaukee, WI · 53202 · cool band · 400 sq ft</div><div class=\"ds-p-meta\">SHEET 1 OF 1 · REC. BY ____________ · 8/21/2026</div></header><section class=\"ds-p-sec\"><h2>Plant list <span>2 species · for the nursery</span></h2><table class=\"ds-p-tbl\"><thead><tr><th>Qty</th><th>Code</th><th>Species</th><th>Scientific name</th><th>Form</th></tr></thead><tbody><tr><td class=\"ds-q\">____</td><td class=\"ds-c\">ASTU</td><td><b>Sky Blue Aster</b></td><td class=\"ds-it\">Symphyotrichum oolentangiense</td><td>Forb/herb</td></tr><tr><td class=\"ds-q\">____</td><td class=\"ds-c\">ELGL</td><td><b>Blue Wild Rye</b></td><td class=\"ds-it\">Elymus glaucus</td><td>Grass</td></tr></tbody></table></section><section class=\"ds-p-sec\"><h2>Before you dig <span>typical requirements</span></h2><ul class=\"ds-p-list\"><li><span class=\"ds-pbox\"></span>Apply and get written approval BEFORE removing any lawn — nearly every program disqualifies work already done.</li><li><span class=\"ds-pbox\"></span>Photograph the area before you start, from a fixed spot you can shoot again after.</li></ul><p class=\"ds-p-warn\">Common requirements across lawn-replacement programs, not any one program&rsquo;s rules.</p></section><footer class=\"ds-p-foot\">FORM RW-1 · rewild · every figure unverified · state lives only in the browser it was entered in</footer></div>",
+      "css": ".ds-sheet{background:#FFFFFF;color:#000000;font-family:'Archivo',system-ui,sans-serif;font-size:10pt;padding:14pt} .ds-p-head{border-bottom:2px solid #000;padding-bottom:6pt;margin-bottom:10pt} .ds-p-head b{font-weight:800} .ds-p-loc{font-family:'Azeret Mono',ui-monospace,monospace;font-size:10pt;margin-top:2pt} .ds-p-meta{font-family:'Azeret Mono',ui-monospace,monospace;font-size:8.5pt;color:#444;margin-top:3pt;letter-spacing:0.04em} .ds-p-sec{margin-bottom:12pt} .ds-p-sec h2{font-size:10pt;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;border-bottom:1px solid #000;padding-bottom:3pt;margin-bottom:5pt;display:flex;justify-content:space-between;align-items:baseline} .ds-p-sec h2 span{font-family:'Azeret Mono',ui-monospace,monospace;font-size:8.5pt;font-weight:400;letter-spacing:0;text-transform:none;color:#444} .ds-p-tbl{width:100%;border-collapse:collapse} .ds-p-tbl th{font-family:'Azeret Mono',ui-monospace,monospace;font-size:8pt;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-align:left;border-bottom:1px solid #000;padding:3pt 4pt} .ds-p-tbl td{font-size:9.5pt;padding:4pt;border-bottom:1px solid #C9C9C9;vertical-align:top} .ds-p-tbl .ds-q{font-family:'Azeret Mono',ui-monospace,monospace;letter-spacing:0.1em} .ds-p-tbl .ds-c{font-family:'Azeret Mono',ui-monospace,monospace;font-size:8.5pt} .ds-p-tbl .ds-it{font-style:italic;color:#444} .ds-p-list{list-style:none;margin:0;padding:0} .ds-p-list li{font-size:9.5pt;line-height:1.45;padding:3pt 0;border-bottom:1px dotted #C9C9C9;display:flex;gap:6pt;align-items:flex-start} .ds-pbox{width:10pt;height:10pt;border:1.2pt solid #000;flex:none;margin-top:1pt} .ds-p-warn{font-family:'Azeret Mono',ui-monospace,monospace;font-size:8pt;color:#000;border-top:1px dashed #000;margin-top:5pt;padding-top:4pt} .ds-p-foot{font-family:'Azeret Mono',ui-monospace,monospace;font-size:7.5pt;color:#444;border-top:1px solid #000;padding-top:4pt;margin-top:10pt}"
     }
   ],
   "narrative": {
@@ -232,8 +311,10 @@
       { "name": "The 22px Pitch Rule", "body": "The grid pitch is the rhythm. Vertical spacing should land near multiples of it rather than on an invented 4/8 scale, and nothing should tile over the ground so completely that the ruling disappears.", "section": "layout" },
       { "name": "The No-Lift Rule", "body": "Nothing in this system lifts. If a surface needs to read as nearer, change its ground (shade → sheet), change its border weight, or invert it. Never add a shadow, and never a hard offset shadow, which belongs to a neobrutalist world this one is not.", "section": "elevation" },
       { "name": "The Drawn Plate Rule", "body": "Species imagery is authored SVG, not photography. Four line plates — Grass, Forb/herb, Shrub, Cactus — are drawn by growth form at 58×44 in currentColor on the shade ground, keyed off the record's category with Forb/herb as fallback. This is not a placeholder: a field guide draws its plates. It became the answer after all 17 inherited image URLs were found dead (every one 400s at Wikimedia), and it is the world's own solution, so future imagery extends the plate set rather than reverting to photos.", "section": "shapes" },
-      { "name": "The Icon Rule", "body": "Icons are the Tabler webfont at its single outline weight, loaded from CDN: 23 distinct glyphs across the app, 9 written directly into markup and the rest supplied by data records for wildlife groups, goals, sun options and marketplace entries. They appear in tick boxes, option toggles, buttons, the locality stamp, empty states and the wildlife log. They are permitted because Tabler is a real drawn library at one consistent stroke, which is what the craft floor asks for — the refusal is Unicode glyphs and emoji standing in for an icon system, not a drawn icon set. Two constraints bind them here: icons take world ink only (`--graphite`, `--hivis`, `--survey`, `--stamp`) and never a per-item colour, which is the rule that removed ~15 inherited Material-palette hexes; and the CDN URL needs its `/dist/` path segment, without which the stylesheet 404s and every icon silently vanishes — the exact bug the superseded build shipped with. Icons label controls; species imagery is the plate set above, never an icon.", "section": "shapes" },
-      { "name": "The One Moment Rule", "body": "This build spends its entire motion budget on the list re-rank: a FLIP over the plant list when a goal changes, so rows visibly travel to their new rank instead of silently re-rendering (420ms on cubic-bezier(0.23, 1, 0.32, 1), transform only). It is guarded twice — a CSS prefers-reduced-motion: no-preference wrapper on the moving class, and a matchMedia early return in JS that skips the measurement entirely. Everything else in the system is 110–140ms colour and scale micro-state. A second authored moment is not free: adding one means removing this one.", "section": "components" }
+      { "name": "The Icon Rule", "body": "Icons are the Tabler webfont at its single outline weight, loaded from CDN: 24 distinct glyphs across the app, 10 written directly into markup and the rest supplied by data records for wildlife groups, goals, sun options and marketplace entries. They appear in tick boxes, option toggles, buttons, the locality stamp, empty states and the wildlife log. They are permitted because Tabler is a real drawn library at one consistent stroke, which is what the craft floor asks for — the refusal is Unicode glyphs and emoji standing in for an icon system, not a drawn icon set. Two constraints bind them here: icons take world ink only (`--graphite`, `--hivis`, `--survey`, `--stamp`) and never a per-item colour, which is the rule that removed ~15 inherited Material-palette hexes; and the CDN URL needs its `/dist/` path segment, without which the stylesheet 404s and every icon silently vanishes — the exact bug the superseded build shipped with. Icons label controls; species imagery is the plate set above, never an icon.", "section": "shapes" },
+      { "name": "The One Moment Rule", "body": "This build spends its entire motion budget on the list re-rank: a FLIP over the plant list when a goal changes, so rows visibly travel to their new rank instead of silently re-rendering (420ms on cubic-bezier(0.23, 1, 0.32, 1), transform only). It is guarded twice — a CSS prefers-reduced-motion: no-preference wrapper on the moving class, and a matchMedia early return in JS that skips the measurement entirely. Everything else in the system is 110–140ms colour and scale micro-state. A second authored moment is not free: adding one means removing this one.", "section": "components" },
+      { "name": "The Tally Rule", "body": "Counts that accumulate render as real tally strokes, not as bars or dots: four uprights and a diagonal through each group of five, drawn as SVG at the graphite stroke. The THESIS promises a tallied list, and a generic chart would be the world breaking its own word. The wildlife run uses them for twelve months of sightings; any future count of observations uses them too.", "section": "components" },
+      { "name": "The Paperwork Is Generic Rule", "body": "The before-you-dig checklist states requirements common across lawn-replacement programs and says so on the sheet. Writing a specific program's rules would be exactly the fabrication PRODUCT.md forbids, since none of them have been verified.", "section": "components" }
     ],
     "dos": [
       "Do keep the printed 22px grid on the page ground — two crossed linear-gradients in the rule colour at the grid pitch. It is the signature of the whole world.",
